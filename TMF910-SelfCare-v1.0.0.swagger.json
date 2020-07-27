@@ -1,0 +1,5801 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is Swagger UI environment generated for the Coponent Suite SelfCare App (TMF910)",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "title": "ComponentSuite Selfcare App",
+    "version": "1.0"
+  },
+  "host": "serverRoot",
+  "basePath": "/tmf-api/tmf-componentsuite/selfcareapp/v1",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "UserInfoType": {
+      "properties": {
+        "sub": {
+          "type": "string",
+          "description": "Subject - Unique Identifier for the End-User"
+        },
+        "name": {
+          "type": "string",
+          "description": "End-User's full name in displayable form including all name parts, possibly including titles and suffixes, ordered according to the End-User's locale and preferences"
+        },
+        "given_name": {
+          "type": "string",
+          "description": "Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters"
+        },
+        "family_name": {
+          "type": "string",
+          "description": "Surname(s) or last name(s) of the End-User. Note that in some cultures, people can have multiple family names or no family name; all can be present, with the names being separated by space characters"
+        },
+        "middle_name": {
+          "type": "string",
+          "description": "Middle name(s) of the End-User. Note that in some cultures, people can have multiple middle names; all can be present, with the names being separated by space characters. Also note that in some cultures, middle names are not used"
+        },
+        "nickname": {
+          "type": "string",
+          "description": "Casual name of the End-User that may or may not be the same as the given_name. For instance, a nickname value of Mike might be returned alongside a given_name value of Michael"
+        },
+        "preferred_username": {
+          "type": "string",
+          "description": "Shorthand name by which the End-User wishes to be referred to at the RP, such as janedoe or j.doe. This value MAY be any valid JSON string including special characters such as @, /, or whitespace"
+        },
+        "email": {
+          "type": "string",
+          "description": "End-User's preferred e-mail address. Its value MUST conform to the [RFC5322] addr-spec syntax"
+        },
+        "phone_number": {
+          "type": "string",
+          "description": "End-User's preferred telephone number. [E.164] is RECOMMENDED as the format of this Claim, for example, +1 (425) 555-1212 or +56 82) 687 2400. If the phone number contains an extension, it is RECOMMENDED that the extension be represented using the [RFC3966] extension syntax, for example, +1 (604) 555-1234;ext=5678"
+        },
+        "gender": {
+          "type": "string",
+          "description": "End-User's gender. Values defined by this specification are female and male. Other values MAY be used when neither of the defined values are applicable"
+        },
+        "birthdate": {
+          "type": "string",
+          "description": "End-User's birthday, represented as an [ISO8601-2004] YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates"
+        },
+        "locale": {
+          "type": "string",
+          "description": "End-User's locale, represented as a [RFC5646] language tag. This is typically an [ISO639-1] language code in lowercase and an [ISO3166-1] country code in uppercase, separated by a dash. For example, en-US or fr-CA. As a compatibility note, some implementations have used an underscore as the separator rather than a dash, for example, en_US"
+        },
+        "zoneinfo": {
+          "type": "string",
+          "description": "String from zoneinfo time zone database representing the End-User's time zone. For example, Europe/Paris or America/Los_Angeles"
+        },
+        "profile": {
+          "type": "string",
+          "description": "URL of the End-User's profile page. The contents of this Web page SHOULD be about the End-User"
+        },
+        "picture": {
+          "type": "string",
+          "description": "URL of the End-User's profile picture. This URL MUST refer to an image file (for example, a PNG, JPEG, or GIF image file), rather than to a Web page containing an image. Note that this URL SHOULD specifically reference a profile photo of the End-User suitable for displaying when describing the End-User, rather than an arbitrary photo taken by the End-User"
+        },
+        "website": {
+          "type": "string",
+          "description": "URL of the End-User's Web page or blog. This Web page SHOULD contain information published by the End-User or an organization that the End-User is affiliated with"
+        },
+        "address": {
+          "description": "Structure including the End-User's preferred postal address",
+          "$ref": "#/definitions/GeographicAddressType"
+        },
+        "legalId": {
+          "description": "Identification documentation of the contact",
+          "items": {
+            "$ref": "#/definitions/IdentificationType"
+          },
+          "type": "array"
+        },
+        "userAssets": {
+          "description": "List of additional profile information",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserAssetType"
+          }
+        }
+      },
+      "required": [
+        "sub",
+        "name"
+      ]
+    },
+    "GeographicAddressType": {
+      "properties": {
+        "streetNr": {
+          "type": "string",
+          "description": "Required if href not included. Number identifying a specific property on a public street. It may be combined with streetNrLast for ranged addresses"
+        },
+        "streetNrSuffix": {
+          "type": "string",
+          "description": "The street number suffix (or suffix of first number for  aranged address)"
+        },
+        "streetNrLast": {
+          "type": "string",
+          "description": "Last number in a range of street numbers allocated to a property"
+        },
+        "streetNrLastSuffix": {
+          "type": "string",
+          "description": "Last street number suffix for a ranged address"
+        },
+        "streetName": {
+          "type": "string",
+          "description": "Required if href not included. Name of the street or other street type"
+        },
+        "streetType": {
+          "type": "string",
+          "description": "Required if href not included. Alley, avenue, street, boulevard, brae, crescent, drive, highway, lane, terrace, parade, place, tarn, way, wharf"
+        },
+        "streetSuffix": {
+          "type": "string",
+          "description": "A modifier denoting a relative direction (E, W, S, N)"
+        },
+        "postcode": {
+          "type": "string",
+          "description": "Required if href not included. Descriptor for a postal delivery area (also known as zipcode)"
+        },
+        "locality": {
+          "type": "string",
+          "description": "Required if href not included. An area of defined or undefined boundaries within a local authority or other legislatively defined area, usually rural or semi-rural in nature, or a suburb, a bounded locality within a city, town or shire principally of urban character "
+        },
+        "city": {
+          "type": "string",
+          "description": "City that the address is in"
+        },
+        "stateOrProvince": {
+          "type": "string",
+          "description": "Required if href not included. the State or Province that the address is in"
+        },
+        "country": {
+          "type": "string",
+          "description": "Required if href not included. Country that the address is in"
+        },
+        "geographicLocation": {
+          "$ref": "#/definitions/GeographicLocationRefOrValueType",
+          "description": "A geo location reference, allows describing through coordinate(s) a point, a line or a space"
+        },
+        "geographicSubAddress": {
+          "$ref": "#/definitions/GeographicSubAddressType",
+          "description": "A list of sub addresses. It is used for addressing within a property in an urban area (country properties are often defined differently). It may refer to a building, a building cluster, or a floor of a multistory building."
+        },
+        "@type": {
+          "type": "string",
+          "description": "Indicates the type of the resource for extensibility purposes. Here can be UrbanPropertyAddress, FormattedAddress, JapanesePropertyAddress , AustralianPropertyAddress, etc"
+        },
+        "@schemaLocation": {
+          "type": "string",
+          "description": "A Link to the schema describing this REST Resource. The basic resource describes UrbanPropertyAddress but a schema could be used for other property address description"
+        }
+      },
+      "required": [
+        "streetNr",
+        "streetName",
+        "streetType",
+        "postcode",
+        "locality",
+        "stateOrProvince",
+        "country"
+      ]
+    },
+    "GeographicSubAddressType": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "type of subAddress. It can be a subunit or a private street."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the subAddress to identify it with a meaningful identification"
+        },
+        "subUnitType": {
+          "type": "string",
+          "description": "the type of subunit (e.g.: BERTH, FLAT, PIER, SUITE, SHOP, TOWER, UNIT, WHARF)"
+        },
+        "subUnitNumber": {
+          "type": "string",
+          "description": "the discriminator used for the subunit often just a simple number (e.g.: 5 for FLAT 5), may also be a range"
+        },
+        "levelType": {
+          "type": "string",
+          "description": "Describes level types within a building (e.g.: BASEMENT) "
+        },
+        "levelNumber": {
+          "type": "string",
+          "description": "used where a level type may be repeated (e.g.: BASEMENT 1, BASEMENT 2)"
+        },
+        "buildingName": {
+          "type": "string",
+          "description": "Allows for buildings that have well-known names"
+        },
+        "privateStreetName": {
+          "type": "string",
+          "description": "private streets internal to a property (e.g. a university) may have internal names that are not recorded by the land title office"
+        },
+        "privateStreetNumber": {
+          "type": "string",
+          "description": "Private streets numbers internal to a private street"
+        },
+        "@type": {
+          "type": "string",
+          "description": "Indicates the type of the subresource for extensibility purposes"
+        },
+        "@schemaLocation": {
+          "type": "string",
+          "description": "A Link to the schema describing this REST subResource to allow for extensions"
+        }
+      }
+    },
+    "GeographicLocationRefOrValueType": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the location entity within the server"
+        },
+        "href": {
+          "type": "string",
+          "description": "Reference of the location entity. An URI used to query the entity resource"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of a GeoLocation"
+        },
+        "type": {
+          "type": "string",
+          "description": "allows describing Geolocation form: it could be a point, a line, a polygon, a cylinder, etc...."
+        },
+        "geographicPoint": {
+          "$ref": "#/definitions/GeographicPointType",
+          "description": "A list of geo points. A GeoPoint defines a geographic point through coordinates"
+        },
+        "@type": {
+          "type": "string",
+          "description": "Indicates the type of the resource for extensibility purposes"
+        },
+        "@schemaLocation": {
+          "type": "string",
+          "description": "A Link to the schema describing this REST Resource"
+        }
+      }
+    },
+    "GeographicPointType": {
+      "properties": {
+        "accuracy": {
+          "type": "string",
+          "description": "Accuracy of the coordinate specified"
+        },
+        "spatialRef": {
+          "type": "string",
+          "description": "Geocoding referential"
+        },
+        "x": {
+          "type": "string",
+          "description": ". x coordinate (usually latitude)"
+        },
+        "y": {
+          "type": "string",
+          "description": "y coordinate (usually longitude)"
+        },
+        "z": {
+          "type": "string",
+          "description": "z coordinate (usually elevation)"
+        }
+      },
+      "required": [
+        "accuracy",
+        "spatialRef",
+        "x",
+        "y"
+      ]
+    },
+    "IdentificationType": {
+      "description": "Somebody's national ID",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "description": "Type of document (e.g.: DNI, passport, RUT, driver's license, etc.)"
+        },
+        "identificationId": {
+          "type": "string",
+          "description": "Identification number of the document"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country that issued the document"
+        },
+        "issuingAuthority": {
+          "type": "string",
+          "description": "Authority that issued the legal identification (e.g.: social security, town hall, ...)"
+        },
+        "issuingDate": {
+          "format": "date-time",
+          "type": "string",
+          "description": "Date when identification was issued"
+        },
+        "@schemaLocation": {
+          "type": "string",
+          "description": "A Link to the schema describing this REST subResource to allow for extensions"
+        }
+      },
+      "required": [
+        "@type",
+        "identificationId",
+        "country"
+      ]
+    },
+    "UserAssetType": {
+      "properties": {
+        "entityType": {
+          "type": "string",
+          "enum": [
+            "customer",
+            "account",
+            "product",
+            "service",
+            "resource"
+          ],
+          "description": "Type of managed entity (e.g.: product, resource, service, customer, account)"
+        },
+        "assetType": {
+          "type": "string",
+          "enum": [
+            "mobile",
+            "landline",
+            "iptv",
+            "broadband",
+            "email",
+            "invoicing"
+          ],
+          "description": "Second level to define the type of managed element for product/service/resource managed entities (e.g.: mobile line subscription, video platform license, mobile equipment, etc). Allows identifying the specific asset within the server referenced. Supported values are implementation and application specific. Other values can be added if those listed are not enough"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of referenced entity within the entity/asset pair (customerId, accountId, mobile line number, ...)"
+        },
+        "role": {
+          "type": "string",
+          "description": "Represents the part played by an individual in relation to being granted a set of entitlements for manageable assets (e.g.: owner, user, viewer, ...)"
+        },
+        "entitlement": {
+          "items": {
+            "$ref": "#/definitions/EntitlementType"
+          },
+          "type": "array",
+          "description": "information about individual entitlements to define access levels to operate over different functions that can be defined in an asset"
+        }
+      },
+      "required": [
+        "entityType",
+        "id"
+      ]
+    },
+    "EntitlementType": {
+      "properties": {
+        "function": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "function",
+        "action"
+      ]
+    },
+    "BillingAccount": {
+      "type": "object",
+      "description": "A party account used for billing purposes. It includes a description of the bill structure (frequency, presentation media, format and so on).",
+      "required": [
+        "name",
+        "relatedParty"
+      ],
+      "properties": {
+        "paymentStatus": {
+          "type": "string",
+          "description": "The condition of the account, such as due, paid, in arrears."
+        },
+        "creditLimit": {
+          "$ref": "#/definitions/Money",
+          "description": "The maximum amount of money that may be charged on an account"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the party account"
+        },
+        "href": {
+          "type": "string",
+          "description": "Unique reference of the account"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the account"
+        },
+        "lastModified": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date of last modification of the account"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the account"
+        },
+        "state": {
+          "type": "string",
+          "description": "Contains the lifecycle state such as: Active, Closed, Suspended and so on."
+        },
+        "type": {
+          "type": "string",
+          "description": "A categorization of an account, such as individual, joint, and so forth, whose instances share some of the same characteristics. Note: for flexibility we use a String here but an implementation may use an enumeration with a limited list of valid values."
+        },
+        "billStructure": {
+          "$ref": "#/definitions/TMF666_BillStructure"
+        },
+        "paymentPlan": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF666_PaymentPlan"
+          }
+        },
+        "financialAccount": {
+          "$ref": "#/definitions/TMF666_FinancialAccountRef"
+        },
+        "defaultPaymentMethod": {
+          "$ref": "#/definitions/TMF666_PaymentMethodRef"
+        },
+        "relatedParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RelatedPartyRef"
+          }
+        },
+        "taxExemption": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF666_AccountTaxExemption"
+          }
+        },
+        "contact": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF666_Contact"
+          }
+        },
+        "accountBalance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF666_AccountBalance"
+          }
+        },
+        "accountRelationship": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF666_AccountRelationship"
+          }
+        },
+        "@type": {
+          "type": "string",
+          "description": "The class type of the actual resource (for type extension)."
+        },
+        "@schemaLocation": {
+          "type": "string",
+          "description": "A link to the schema describing a resource (for type extension)."
+        },
+        "@baseType": {
+          "type": "string",
+          "description": "The base type for use in polymorphic collections"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "The actual type of the target instance when needed for disambiguation."
+        }
+      }
+    },
+    "TMF666_AccountTaxExemption": {
+      "type": "object",
+      "description": "Proof of freedom from taxes imposed by a taxing jurisdiction",
+      "required": [
+        "issuingJurisdiction",
+        "validFor"
+      ],
+      "properties": {
+        "certificateNumber": {
+          "type": "string",
+          "description": "Identifier of a document that shows proof of exemption from taxes for the taxing jurisdiction"
+        },
+        "issuingJurisdiction": {
+          "type": "string",
+          "description": "Name of the taxing jurisdiction for which taxes are exempt"
+        },
+        "reason": {
+          "type": "string",
+          "description": "Reason of the tax exemption"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod",
+          "description": "Period for which the exemption is valid"
+        },
+        "@type": {
+          "type": "string",
+          "description": "The class type of the actual resource (for type extension)."
+        }
+      }
+    },
+    "TMF666_Contact": {
+      "type": "object",
+      "description": "An individual or an organization used as a contact point for a given account and accessed via some contact medium.",
+      "required": [
+        "contactType",
+        "validFor"
+      ],
+      "properties": {
+        "contactName": {
+          "type": "string",
+          "description": "A displayable name for that contact"
+        },
+        "contactType": {
+          "type": "string",
+          "description": "Type of contact (primary, secondary...)"
+        },
+        "partyRoleType": {
+          "type": "string",
+          "description": "Identifies what kind of party role type is linked to the contact (a account manager...)"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod",
+          "description": "Validity period of that contact"
+        },
+        "contactMedium": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF666_ContactMedium"
+          }
+        },
+        "relatedParty": {
+          "$ref": "#/definitions/RelatedPartyRef"
+        },
+        "@type": {
+          "type": "string",
+          "description": "The class type of the actual resource (for type extension)."
+        }
+      }
+    },
+    "TMF666_AccountBalance": {
+      "type": "object",
+      "description": "Balances linked to the account",
+      "required": [
+        "type",
+        "amount",
+        "validFor"
+      ],
+      "properties": {
+        "amount": {
+          "$ref": "#/definitions/Money",
+          "description": "Balance amount"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the balance : deposit balance, disputed balance, loyalty balance, receivable balance..."
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod",
+          "description": "Balance validity period"
+        },
+        "@type": {
+          "type": "string",
+          "description": "The class type of the actual resource (for type extension)."
+        }
+      }
+    },
+    "TMF666_AccountRelationship": {
+      "type": "object",
+      "description": "Significant connection between accounts. For instance an aggregating account for a list of shop branches each having its own billing account.",
+      "required": [
+        "relationshipType",
+        "validFor"
+      ],
+      "properties": {
+        "relationshipType": {
+          "type": "string",
+          "description": "Type of relationship"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod",
+          "description": "Validity period of that relationship"
+        },
+        "account": {
+          "$ref": "#/definitions/TMF666_AccountRef"
+        },
+        "@type": {
+          "type": "string",
+          "description": "The class type of the actual resource (for type extension)."
+        }
+      }
+    },
+    "TMF666_ContactMedium": {
+      "type": "object",
+      "description": "Indicates the contact medium that could be used to contact the party.",
+      "properties": {
+        "preferred": {
+          "type": "boolean",
+          "description": "If true, indicates that is the preferred contact medium"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the contact medium, such as: email address, telephone number, postal address"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod",
+          "description": "The time period that the contact medium is valid for"
+        },
+        "characteristic": {
+          "$ref": "#/definitions/TMF666_MediumCharacteristic"
+        },
+        "@type": {
+          "type": "string",
+          "description": "The class type of the actual resource (for type extension)."
+        }
+      }
+    },
+    "TMF666_MediumCharacteristic": {
+      "type": "object",
+      "description": "Describes the contact medium characteristics that could be used to contact a party (an individual or an organization)",
+      "properties": {
+        "city": {
+          "type": "string",
+          "description": "The city"
+        },
+        "country": {
+          "type": "string",
+          "description": "The country"
+        },
+        "emailAddress": {
+          "type": "string",
+          "description": "Full email address in standard format"
+        },
+        "faxNumber": {
+          "type": "string",
+          "description": "The fax number of the contact"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "The primary phone number of the contact"
+        },
+        "postCode": {
+          "type": "string",
+          "description": "Postcode"
+        },
+        "stateOrProvince": {
+          "type": "string",
+          "description": "State or province"
+        },
+        "street1": {
+          "type": "string",
+          "description": "Describes the street"
+        },
+        "street2": {
+          "type": "string",
+          "description": "Complementary street description"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of medium (fax, mobile phone...)"
+        },
+        "@type": {
+          "type": "string",
+          "description": "The class type of the actual resource (for type extension)."
+        },
+        "@schemaLocation": {
+          "type": "string",
+          "description": "A link to the schema describing a resource (for type extension)."
+        }
+      }
+    },
+    "TMF666_AccountRef": {
+      "type": "object",
+      "description": "Account reference. A account may be a party account or a financial account.",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the account"
+        },
+        "href": {
+          "type": "string",
+          "description": "Reference of the account"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the account"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the account"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "The actual type of the target instance when needed for disambiguation."
+        }
+      }
+    },
+    "TMF666_BillStructure": {
+      "type": "object",
+      "description": "The structure of the bill for party accounts (billling or settlement).",
+      "properties": {
+        "presentationMedia": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF666_BillPresentationMediaRef"
+          }
+        },
+        "format": {
+          "$ref": "#/definitions/TMF666_BillFormatRef"
+        },
+        "cycleSpecification": {
+          "$ref": "#/definitions/TMF666_BillingCycleSpecificationRef"
+        },
+        "@type": {
+          "type": "string",
+          "description": "The class type of the actual resource (for type extension)."
+        }
+      }
+    },
+    "TMF666_PaymentPlan": {
+      "type": "object",
+      "description": "Defines a plan for payment (when a party wants to spread his payments)",
+      "properties": {
+        "numberOfPayments": {
+          "type": "integer",
+          "description": "Number of payments used to spread the global payment"
+        },
+        "paymentFrequency": {
+          "type": "string",
+          "description": "Frequency of the payments, such as monthly and bimonthly"
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Priority of the payment plan"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the payment plan (effective, ineffective)"
+        },
+        "totalAmount": {
+          "$ref": "#/definitions/Money",
+          "description": "Amount paid"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of payment plan"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod",
+          "description": "Validity period of the payment plan"
+        },
+        "paymentMethod": {
+          "$ref": "#/definitions/TMF666_PaymentMethodRef"
+        },
+        "@type": {
+          "type": "string",
+          "description": "The class type of the actual resource (for type extension)."
+        }
+      }
+    },
+    "TMF666_FinancialAccountRef": {
+      "type": "object",
+      "description": "AccountReceivable reference. An account of money owed by a party to another entity in exchange for goods or services that have been delivered or used. An account receivable aggregates the amounts of one or more party accounts (billing or settlement) owned by a given party.",
+      "properties": {
+        "href": {
+          "type": "string",
+          "description": "Unique reference of the account"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the account"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the account"
+        },
+        "accountBalance": {
+          "$ref": "#/definitions/TMF666_AccountBalance"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "The actual type of the target instance when needed for disambiguation."
+        }
+      }
+    },
+    "TMF666_PaymentMethodRef": {
+      "type": "object",
+      "description": "PaymentMethod reference. A payment method defines a specific mean of payment (e.g direct debit).",
+      "properties": {
+        "href": {
+          "type": "string",
+          "description": "Reference of the payment mean"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the payment mean"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the payment mean"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "The actual type of the target instance when needed for disambiguation."
+        }
+      }
+    },
+    "TMF666_BillPresentationMediaRef": {
+      "type": "object",
+      "description": "PresentationMedia reference. A mean of communicating a bill, supported by the associated bill format. For example, post mail, email, web page.",
+      "properties": {
+        "href": {
+          "type": "string",
+          "description": "Reference of the bill presentation media"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the bill presentation media"
+        },
+        "name": {
+          "type": "string",
+          "description": "A short descriptive name"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "The actual type of the target instance when needed for disambiguation."
+        }
+      }
+    },
+    "TMF666_BillFormatRef": {
+      "type": "object",
+      "description": "BillFormat reference. A bill format is a description of the way in which a bill is presented.",
+      "properties": {
+        "href": {
+          "type": "string",
+          "description": "Reference of the bill format"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the bill format"
+        },
+        "name": {
+          "type": "string",
+          "description": "A short descriptive name"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "The actual type of the target instance when needed for disambiguation."
+        }
+      }
+    },
+    "TMF666_BillingCycleSpecificationRef": {
+      "type": "object",
+      "description": "BillingCycleSpecification reference. A description of when to initiate a billing cycle and the various sub steps of a billing cycle.",
+      "properties": {
+        "dateShift": {
+          "type": "integer",
+          "description": "An offset of a billing/settlement date. The offset is expressed as number of days with regard to the start of the billing/settlement period."
+        },
+        "frequency": {
+          "type": "string",
+          "description": "Frequency of the billing cycle (monthly for instance)"
+        },
+        "href": {
+          "type": "string",
+          "description": "Reference of the billing cycle specification"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the billing cycle specification"
+        },
+        "name": {
+          "type": "string",
+          "description": "A short descriptive name"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "The actual type of the target instance when needed for disambiguation."
+        }
+      }
+    },
+    "CustomerBill": {
+      "description": "The billing account receives all charges (recurring, one time and usage) of the offers and products assigned to it during order process. Periodically according to billing cycle specifications attached to the billing account or as a result of an event, a customer bill (aka invoice) is produced. This customer bill concerns different related parties which play a role on it : for example, a customer bill is produced by an operator, is sent to a bill receiver and has to be paid by a payer.\nA payment method could be assigned to the customer bill to build the call of payment. Lettering process enables to assign automatically or manually incoming amount from payments to customer bills (payment items).\nA tax item is created for each tax rate used in the customer bill.\nThe financial account represents a financial entity which records all customer\ufffds accounting events : payment amount are recorded as credit and invoices amount are recorded as debit. It gives the customer overall balance (account balance).\nThe customer bill is linked to one or more documents that can be downloaded via a provided url.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of he bill",
+          "type": "string"
+        },
+        "href": {
+          "description": "Bill unique reference",
+          "type": "string"
+        },
+        "billNo": {
+          "description": "Bill reference known by the customer or the party and displayed on the bill. Could be different from the id",
+          "type": "string"
+        },
+        "runType": {
+          "description": "onCycle (a bill can be created as a result of a cycle run) or offCycle (a bill can be created as a result of other events such as customer request or account close)",
+          "type": "string"
+        },
+        "category": {
+          "description": "Category of the bill produced : normal, duplicate, interim, last, trial customer or credit note for example",
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/TMF678_stateValue"
+        },
+        "lastUpdate": {
+          "description": "Date of bill last update",
+          "type": "string",
+          "format": "date-time"
+        },
+        "billDate": {
+          "description": "Bill date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "nextBillDate": {
+          "description": "). Approximate date of  the next bill production given for information (only used for onCycle bill)",
+          "type": "string",
+          "format": "date-time"
+        },
+        "billingPeriod": {
+          "$ref": "#/definitions/TimePeriod"
+        },
+        "amountDue": {
+          "$ref": "#/definitions/Money"
+        },
+        "paymentDueDate": {
+          "description": "Date at which the amount due should have been paid",
+          "type": "string",
+          "format": "date-time"
+        },
+        "remainingAmount": {
+          "$ref": "#/definitions/Money"
+        },
+        "taxExcludedAmount": {
+          "$ref": "#/definitions/Money"
+        },
+        "taxIncludedAmount": {
+          "$ref": "#/definitions/Money"
+        },
+        "@baseType": {
+          "description": "Indicates the base (class) type of the customer bill",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of the customer bill",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to the schema describing the REST resource",
+          "type": "string"
+        },
+        "billDocument": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF678_Attachment"
+          }
+        },
+        "appliedPayment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF678_AppliedPayment"
+          }
+        },
+        "billingAccount": {
+          "$ref": "#/definitions/TMF678_BillingAccountRef"
+        },
+        "taxItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF678_TaxItem"
+          }
+        },
+        "paymentMethod": {
+          "$ref": "#/definitions/TMF678_PaymentMethodRef"
+        },
+        "relatedParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RelatedPartyRef"
+          }
+        },
+        "financialAccount": {
+          "$ref": "#/definitions/TMF678_FinancialAccountRef"
+        }
+      }
+    },
+    "TMF678_stateValue": {
+      "description": "",
+      "type": "string",
+      "enum": [
+        "new",
+        "onHold",
+        "validated",
+        "sent",
+        "partiallyPaid",
+        "settled"
+      ]
+    },
+    "TMF678_StateValues": {
+      "description": "",
+      "type": "string",
+      "enum": [
+        "inProgress",
+        "rejected",
+        "done",
+        "terminatedWithError"
+      ]
+    },
+    "TMF678_Attachment": {
+      "description": "Attachment refers to extensions or additional parts that is or may be attached to something (agreements, contracts, appointments) to perform a particular function. They can be communication attachments, documents and other.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the attachment",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the attachment",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the attachment",
+          "type": "string"
+        },
+        "description": {
+          "description": "Free short description of the attachment",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "Mime type of the attachment",
+          "type": "string"
+        },
+        "sizeUnit": {
+          "description": "Size unit (in bytes by default)",
+          "type": "string"
+        },
+        "size": {
+          "description": "The size  in Bytes of the document or attachment",
+          "type": "number",
+          "format": "float"
+        },
+        "url": {
+          "description": "URL of the attachment",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the type of attachment",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to the schema describing the REST resource",
+          "type": "string"
+        }
+      }
+    },
+    "TMF678_AppliedPayment": {
+      "description": "The applied payment is the result of lettering process. It enables to assign automatically or manually part of incoming payment amount to a bill.",
+      "type": "object",
+      "properties": {
+        "appliedAmount": {
+          "$ref": "#/definitions/Money"
+        },
+        "payment": {
+          "$ref": "#/definitions/TMF678_PaymentRef"
+        }
+      }
+    },
+    "TMF678_BillingAccountRef": {
+      "description": "BillingAccount reference. A BillingAccount is a detailed description of a bill structure.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the billing account",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the billing account",
+          "type": "string"
+        },
+        "name": {
+          "description": "Billing account name",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the type of the billing account",
+          "type": "string"
+        }
+      }
+    },
+    "TMF678_TaxItem": {
+      "description": "A tax item is created for each tax rate and tax type used in the bill. The tax item specifies the applied tax rate and the total resulting amount.",
+      "type": "object",
+      "properties": {
+        "taxCategory": {
+          "description": "A tax category",
+          "type": "string"
+        },
+        "taxRate": {
+          "description": "Applied rate of the tax",
+          "type": "number",
+          "format": "float"
+        },
+        "taxAmount": {
+          "$ref": "#/definitions/Money"
+        }
+      }
+    },
+    "TMF678_PaymentMethodRef": {
+      "description": "PaymentMethod reference. A payment method defines a specific mean of payment (e.g direct debit).",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the payment method",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the payment method",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the payment method",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the type of payment method",
+          "type": "string"
+        }
+      }
+    },
+    "TMF678_FinancialAccountRef": {
+      "description": "Financial account reference. An account of money owed by a party to another entity in exchange for goods or services that have been delivered or used. A finacial account aggregates the amounts of one or more party accounts (billing or settlement) owned by a given party.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the account",
+          "type": "string"
+        },
+        "href": {
+          "description": "Unique reference of the account",
+          "type": "string"
+        },
+        "name": {
+          "description": "Account name",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the type of the financial account",
+          "type": "string"
+        }
+      }
+    },
+    "TMF678_PaymentRef": {
+      "description": "A payment reference",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the payment",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the payment",
+          "type": "string"
+        },
+        "paymentDate": {
+          "description": "Payment date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "amount": {
+          "$ref": "#/definitions/Money"
+        },
+        "@referredType": {
+          "description": "Indicates the type of payment",
+          "type": "string"
+        }
+      }
+    },
+    "AppliedCustomerBillingRate": {
+      "description": "A customer bill displays applied billing rates created before or during the billing process.",
+      "required": [
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the customer applied billing rate",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the customer applied billing rate",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the applied billing rate : appliedBillingCharge (any kind of charge except taxation charges : recurringCharge, oneTimeCharge, usageCharge),  appliedBillingCredit (any kind of credit : rebate or productAlteration) or appliedPenaltyCharge (penalty charges such as late fees, payment rejection fees,...)",
+          "type": "string"
+        },
+        "date": {
+          "description": "Creation date of the applied billing rate",
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "description": "Name of the customer applied billing rate",
+          "type": "string"
+        },
+        "description": {
+          "description": "Additional data to be displayed on the bill for this customer applied billing rate",
+          "type": "string"
+        },
+        "taxExcludedAmount": {
+          "$ref": "#/definitions/Money"
+        },
+        "taxIncludedAmount": {
+          "$ref": "#/definitions/Money"
+        },
+        "@baseType": {
+          "description": "Indicates the base (class) type of the applied customer billing rate",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of the applied customer billing rate",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to the schema describing the REST resource",
+          "type": "string"
+        },
+        "appliedTax": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF678_AppliedBillingTaxRate"
+          }
+        },
+        "bill": {
+          "$ref": "#/definitions/TMF678_BillRef"
+        },
+        "characteristic": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF678_AppliedBillingRateCharacteristic"
+          }
+        }
+      }
+    },
+    "TMF678_AppliedBillingTaxRate": {
+      "description": "The applied billing tax rate represents taxes applied billing rate it refers to. It is calculated during the billing process.",
+      "required": [
+        "taxAmount"
+      ],
+      "type": "object",
+      "properties": {
+        "taxCategory": {
+          "description": "A categorization of the tax rate",
+          "type": "string"
+        },
+        "taxRate": {
+          "description": "Applied rate",
+          "type": "number",
+          "format": "float"
+        },
+        "taxAmount": {
+          "$ref": "#/definitions/Money"
+        }
+      }
+    },
+    "TMF678_BillRef": {
+      "description": "Bill reference",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the bill",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the bill",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the (class) type of the bill",
+          "type": "string"
+        }
+      }
+    },
+    "TMF678_AppliedBillingRateCharacteristic": {
+      "description": "An applied billing rate has dynamic characteristics according to the its type (characteristics are based on the service type, line of business or on others parameters)",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Characteristic name",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value affected to the characteristic",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of the characteristic",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to the schema describing the REST resource",
+          "type": "string"
+        }
+      }
+    },
+    "UsageConsumptionReport": {
+      "description": "An usage consumption report enables to know at a given point the balances and the consumption counters related to various buckets (SMS, Voice, Data for example). It could be calculated for a device identified by a public key (msisdn number for a mobile device for example or PSTN or VOIP number for a fix device), for a subscribed offer or option or for an user.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the usage consumption report given by the server",
+          "type": "string"
+        },
+        "href": {
+          "description": "Hyperlink to access the usage consumption report",
+          "type": "string"
+        },
+        "name": {
+          "description": "Usage consumption report name",
+          "type": "string"
+        },
+        "description": {
+          "description": "Free short text describing the usage consumption report content",
+          "type": "string"
+        },
+        "effectiveDate": {
+          "description": "Date and time when the usage consumption report was calculated and generated",
+          "type": "string",
+          "format": "date-time"
+        },
+        "@baseType": {
+          "description": "Indicates the base (class) type of the usage consumption report",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of the usage consumption report",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to the schema describing the REST resource",
+          "type": "string"
+        },
+        "relatedParty": {
+          "$ref": "#/definitions/RelatedPartyRef"
+        },
+        "bucket": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF677_Bucket"
+          }
+        }
+      }
+    },
+    "TMF677_Bucket": {
+      "description": "A bucket represents a quantity of usage, as 2 hours national calls or 50 sms for example. It could be either a quantity or an amount in a currency (i.e. It could represent a fixed number of SMS, MMS, minutes of calls, quantity of data, number of events as well as a specific amount in a given currency). It requires one or more network products from which usages will debit the bucket.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the bucket",
+          "type": "string"
+        },
+        "name": {
+          "description": "Bucket name",
+          "type": "string"
+        },
+        "usageType": {
+          "description": "Type of usage concerned by the bucket (voice, sms, data,\ufffd)",
+          "type": "string"
+        },
+        "isShared": {
+          "description": "True if the bucket is shared between several devices or users",
+          "type": "boolean"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of bucket",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to the schema describing the REST resource",
+          "type": "string"
+        },
+        "product": {
+          "$ref": "#/definitions/TMF677_ProductBasicInfo"
+        },
+        "bucketBalance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF677_Balance"
+          }
+        },
+        "bucketCounter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF677_ConsumptionCounter"
+          }
+        }
+      }
+    },
+    "TMF677_ProductBasicInfo": {
+      "description": "An instantiated product corresponding to a simple product offering subscribed by a customer",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the product",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the product",
+          "type": "string"
+        },
+        "name": {
+          "description": "Product Name",
+          "type": "string"
+        },
+        "publicIdentifier": {
+          "description": "Public number associated to the product (msisdn number for mobile line for example)",
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/RelatedPartyRef"
+        }
+      }
+    },
+    "TMF677_Balance": {
+      "description": "The balance defines the remaining allowed product usage quantity in terms of volume, time, currency or events. It corresponds to the initial allowed usage quantity minus the usage consumed on the bucket.",
+      "type": "object",
+      "properties": {
+        "unit": {
+          "description": "Code of the unit used to specify the given value of the balance. It could be different from the bucket unit",
+          "type": "string"
+        },
+        "remainingValue": {
+          "description": "Numeric remaining value for the bucket given in the balance unit (for example 1.9). This numeric value could be used for calculation for example",
+          "type": "integer",
+          "format": "int64"
+        },
+        "remainingValueLabel": {
+          "description": "Remaining value in a formatted string for the bucket given in the balance unit (for example 1.9 Gb). This formatted string could be used for display needs for example",
+          "type": "string"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of the bucket balance",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to the schema describing the REST resource",
+          "type": "string"
+        }
+      }
+    },
+    "TMF677_ConsumptionCounter": {
+      "description": "The consumption counters detail for example the different kind of consumption done on the bucket",
+      "type": "object",
+      "properties": {
+        "counterType": {
+          "description": "Type of the consumption counter. We can give for example a counter of the used value",
+          "type": "string"
+        },
+        "level": {
+          "description": "Counter level. The given counter can be given globally for the bucket or detailed by user or by product for example in case of shared bucket",
+          "type": "string"
+        },
+        "unit": {
+          "description": "Unit of the counter",
+          "type": "string"
+        },
+        "value": {
+          "description": "Numeric value of the bucket counter in the given unit",
+          "type": "integer",
+          "format": "int64"
+        },
+        "valueLabel": {
+          "description": "Value of the counter in a formatted string used for display needs for example",
+          "type": "string"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of consumption counter",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to the schema describing the REST resource",
+          "type": "string"
+        },
+        "product": {
+          "$ref": "#/definitions/TMF677_ProductRef"
+        },
+        "user": {
+          "$ref": "#/definitions/RelatedPartyRef"
+        }
+      }
+    },
+    "TMF677_ProductRef": {
+      "description": "Reference of a product",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the product",
+          "type": "string"
+        },
+        "publicIdentifier": {
+          "description": "Public number associated to the product (msisdn number for mobile line for example)",
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/RelatedPartyRef"
+        }
+      }
+    },
+    "Usage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Received",
+            "Rejected",
+            "Recycled",
+            "Guided",
+            "Rated",
+            "Rerate",
+            "Billed"
+          ]
+        },
+        "usageSpecification": {
+          "$ref": "#/definitions/TMF635_UsageSpecificationRef"
+        },
+        "usageCharacteristic": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF635_UsageCharacteristic"
+          }
+        },
+        "relatedParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF635_Reference"
+          }
+        },
+        "ratedProductUsage": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF635_RatedProductUsage"
+          }
+        }
+      }
+    },
+    "TMF635_UsageSpecificationRef": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "TMF635_Reference": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "href": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "validFor": {
+          "$ref": "#/definitions/ValidFor"
+        }
+      }
+    },
+    "TMF635_UsageCharacteristic": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "TMF635_UsageSpecCharacteristic": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "configurable": {
+          "type": "boolean"
+        },
+        "usageSpecCharacteristicValue": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF635_UsageSpecCharacteristicValue"
+          }
+        }
+      }
+    },
+    "TMF635_UsageSpecCharacteristicValue": {
+      "type": "object",
+      "properties": {
+        "valueType": {
+          "type": "string"
+        },
+        "default": {
+          "type": "boolean"
+        },
+        "value": {
+          "type": "string"
+        },
+        "valueFrom": {
+          "type": "string"
+        },
+        "valueTo": {
+          "type": "string"
+        }
+      }
+    },
+    "TMF635_RatedProductUsage": {
+      "type": "object",
+      "properties": {
+        "ratingDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "usageRatingTag": {
+          "type": "string"
+        },
+        "isBilled": {
+          "type": "boolean"
+        },
+        "ratingAmountType": {
+          "type": "string"
+        },
+        "taxIncludedRatingAmount": {
+          "type": "number",
+          "format": "float"
+        },
+        "taxExcludedRatingAmount": {
+          "type": "number",
+          "format": "float"
+        },
+        "taxRate": {
+          "type": "number",
+          "format": "float"
+        },
+        "isTaxExempt": {
+          "type": "boolean"
+        },
+        "offerTariffType": {
+          "type": "string"
+        },
+        "bucketValueConvertedInAmount": {
+          "type": "number",
+          "format": "float"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "productRef": {
+          "type": "string"
+        }
+      }
+    },
+    "TMF637_StatusType": {
+      "description": "",
+      "type": "string",
+      "enum": [
+        "created",
+        "pendingActive",
+        "cancelled",
+        "active",
+        "pendingTerminate",
+        "terminated",
+        "suspended",
+        "aborted"
+      ]
+    },
+    "Product": {
+      "description": "A Product represents the subscription of a ProductOffering by a Party playing a PartyRole, such as a Customer.  For example, Jean has subscribed to company ABC\ufffds internet ProductOffering.\nThe association between ProductSpecification and Product allows ProductSpecification, to be instantiated as Product and related to customers or other involved parties.",
+      "required": [
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the product",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the product",
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the product. It could be copied from the description of the Product Offering.",
+          "type": "string"
+        },
+        "isBundle": {
+          "description": "If true, the product is a ProductBundle which is an instantiation of a BundledProductOffering. If false, the product is a ProductComponent which is an instantiation of a SimpleProductOffering",
+          "type": "boolean"
+        },
+        "isCustomerVisible": {
+          "description": "If true, the product is visible by the customer",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The name of the product. It could be the same as the name of the Product Offering",
+          "type": "string"
+        },
+        "productSerialNumber": {
+          "description": "Serial number for the product. This is typically applicable to tangible products e.g. Broadband Router.",
+          "type": "string"
+        },
+        "startDate": {
+          "description": "The date from which the product starts",
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "$ref": "#/definitions/TMF637_StatusType"
+        },
+        "terminationDate": {
+          "description": "The date when the product was terminated. Not applicable to active products",
+          "type": "string",
+          "format": "date-time"
+        },
+        "@baseType": {
+          "description": "Indicates the base type of the resource. Here can be 'Product'",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicated the type of resource.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "A link to the schema describing this REST resource.",
+          "type": "string"
+        },
+        "place": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF637_Place"
+          }
+        },
+        "productOffering": {
+          "$ref": "#/definitions/TMF637_ProductOfferingRef"
+        },
+        "productSpecification": {
+          "$ref": "#/definitions/TMF637_ProductSpecification"
+        },
+        "characteristic": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF637_ProductCharacteristic"
+          }
+        },
+        "productRelationship": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF637_ProductRelationship"
+          }
+        },
+        "billingAccount": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF637_BillingAccountRef"
+          }
+        },
+        "relatedParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RelatedParty"
+          }
+        },
+        "realizingResource": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF637_RealizingResource"
+          }
+        },
+        "realizingService": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF637_RealizingService"
+          }
+        },
+        "productPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF637_ProductPrice"
+          }
+        },
+        "productOrder": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF637_ProductOrderRef"
+          }
+        },
+        "productTerm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF637_ProductTerm"
+          }
+        }
+      }
+    },
+    "TMF637_ProductOfferingRef": {
+      "description": "ProductOffering reference. A product offering represents entities that are orderable from the provider of the catalog, this resource includes pricing information.",
+      "required": [
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the product offering",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the product offering",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the product offering",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Type (class) of the product offering",
+          "type": "string"
+        }
+      }
+    },
+    "TMF637_ProductSpecification": {
+      "description": "A ProductSpecification is a detailed description of a tangible or intangible object made available externally in the form of a ProductOffering to customers or other parties playing a party role.",
+      "required": [
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the product specification",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the product specification",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the product specification",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the product specification",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicate the productSpecification type class",
+          "type": "string"
+        },
+        "describing": {
+          "$ref": "#/definitions/TMF637_TargetResourceSchema"
+        }
+      }
+    },
+    "TMF637_ProductCharacteristic": {
+      "description": "Characteristics of the product to instantiate or to modify.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the characteristic",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value of the characteristic",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of resource",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "This field provided a link to the schema describing this REST resource.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF637_ProductRelationship": {
+      "description": "Type of the product relationship. it can be 'bundled' if the product is a bundle and you want to describe the 'bundled' products inside this bundle, 'reliesOn' if the product needs another already owned product to rely on \n(e.g. an option on an already owned mobile access product) or 'targets' or 'isTargeted' (depending on the way of expressing the link) for any other kind of links that may be useful",
+      "required": [
+        "product"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "Type of the product relationship",
+          "type": "string"
+        },
+        "product": {
+          "$ref": "#/definitions/TMF637_ProductRef"
+        }
+      }
+    },
+    "TMF637_ProductRef": {
+      "description": "A product reference to be used for relationship target",
+      "required": [
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the product",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the product",
+          "type": "string"
+        }
+      }
+    },
+    "TMF637_BillingAccountRef": {
+      "description": "A BillingAccount is a detailed description of a bill structure",
+      "required": [
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identier of the billing account",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the billing account",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the billing account",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the (class) type of the billing account",
+          "type": "string"
+        }
+      }
+    },
+    "TMF637_RealizingResource": {
+      "description": "RealizingResource reference. RealizingResource is a link to the resource that realizes the product.",
+      "required": [
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the resource",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the resource",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the resource.",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role of the resource",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicate the class (type) of the realizing resource",
+          "type": "string"
+        }
+      }
+    },
+    "TMF637_RealizingService": {
+      "description": "RealizingService reference. RealizingService is a link to the service that realizes the product.",
+      "required": [
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the service",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the service",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the service",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role of the realizing service",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicate the class (type) of the realizing service.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF637_ProductPrice": {
+      "description": "An amount, usually of money, that represents the actual price paid by a Customer for a purchase, a rent or a lease of a Product. The price is valid for a defined period of time.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of a productOfferingPrice",
+          "type": "string"
+        },
+        "name": {
+          "description": "A short descriptive name such as \"Subscription price\"",
+          "type": "string"
+        },
+        "description": {
+          "description": "A narrative that explains in detail the semantics of this product price",
+          "type": "string"
+        },
+        "priceType": {
+          "description": "A category that describes the price, such as recurring, discount, allowance, penalty, and so forth",
+          "type": "string"
+        },
+        "recurringChargePeriod": {
+          "description": "Could be month, week...",
+          "type": "string"
+        },
+        "unitOfMeasure": {
+          "description": "Could be minutes, GB...",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the type of ProductPrice class",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "A link to the schema describing this REST resource",
+          "type": "string"
+        },
+        "price": {
+          "$ref": "#/definitions/TMF637_Price"
+        },
+        "prodPriceAlteration": {
+          "$ref": "#/definitions/TMF637_PriceAlteration"
+        },
+        "billingAccount": {
+          "$ref": "#/definitions/TMF637_BillingAccountRef"
+        }
+      }
+    },
+    "TMF637_Price": {
+      "description": "Provides all amounts (tax included, duty free, tax rate), used currency and percentage applied for price and price alteration",
+      "type": "object",
+      "properties": {
+        "taxIncludedAmount": {
+          "$ref": "#/definitions/Money"
+        },
+        "dutyFreeAmount": {
+          "$ref": "#/definitions/Money"
+        },
+        "percentage": {
+          "description": "Percentage applied",
+          "type": "number",
+          "format": "float"
+        },
+        "taxRate": {
+          "description": "Applied tax rate on amount",
+          "type": "number",
+          "format": "float"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of the price",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to the schema describing this REST resource.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF637_Place": {
+      "description": "Place defines the places where the products is installed or has a footprint (a place could be used for geo fencing",
+      "required": [
+        "role"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the place",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the place",
+          "type": "string"
+        },
+        "name": {
+          "description": "A user-friendly name for the place",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role of the place (for instance: 'installation site', 'A-extremity site', 'Supervised Perimeter' etc...)",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicate the type of Place class (example: 'geographicAddress')",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "A link to the schema describing this REST resource",
+          "type": "string"
+        }
+      }
+    },
+    "TMF637_PriceAlteration": {
+      "description": "Is an amount, usually of money, that modifies the price charged for a Product",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Link to the schema describing this REST resource.",
+          "type": "string"
+        },
+        "name": {
+          "description": "A short descriptive name such as \"Monthly discount\"",
+          "type": "string"
+        },
+        "description": {
+          "description": "A narrative that explains in detail the semantics of this ProdPriceAlteration",
+          "type": "string"
+        },
+        "priceType": {
+          "description": "A category that describes the price such as recurring, one shot and so forth",
+          "type": "string"
+        },
+        "unitOfMeasure": {
+          "description": "Could be minutes, GB...",
+          "type": "string"
+        },
+        "recurringChargePeriod": {
+          "description": "Could be month, week...",
+          "type": "string"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod"
+        },
+        "priority": {
+          "description": "Priority level for applying this alteration among all the defined alterations",
+          "type": "integer",
+          "format": "int32"
+        },
+        "@type": {
+          "description": "Indicated the class (type) of the price alteration.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "A link to the schema describing the price alteration.",
+          "type": "string"
+        },
+        "price": {
+          "$ref": "#/definitions/TMF637_Price"
+        }
+      }
+    },
+    "TMF637_ProductOrderRef": {
+      "description": "The product order(s) related to this product inventory",
+      "required": [
+        "orderItemId"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of product order",
+          "type": "string"
+        },
+        "href": {
+          "description": "Hypertext Reference of the product order",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicate the class (type) of productOrder",
+          "type": "string"
+        },
+        "orderItemId": {
+          "description": "Identifier of the order item where the product was managed",
+          "type": "string"
+        },
+        "orderItemAction": {
+          "description": "Action of the order item for this product",
+          "type": "string"
+        }
+      }
+    },
+    "TMF637_ProductTerm": {
+      "description": "This represent a commitment with a duration",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the commitment term",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the commitment term",
+          "type": "string"
+        },
+        "duration": {
+          "$ref": "#/definitions/Quantity"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod"
+        },
+        "@type": {
+          "description": "Indicate the class (type) of the product term",
+          "type": "string"
+        }
+      }
+    },
+    "TMF637_TargetResourceSchema": {
+      "description": "Target to the schema describing the product spec resource",
+      "required": [
+        "@type"
+      ],
+      "type": "object",
+      "properties": {
+        "@type": {
+          "description": "Indicated the type of the productSpec described there - for example an E-Line Spec, a CPE spec",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "A link to the schema describing the product spec",
+          "type": "string"
+        }
+      }
+    },
+    "ProductOffering": {
+      "type": "object",
+      "description": "Represents entities that are orderable from the provider of the catalog, this resource includes pricing information.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the productOffering"
+        },
+        "href": {
+          "type": "string",
+          "description": "Reference of the ProductOffering"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the productOffering"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the productOffering"
+        },
+        "isBundle": {
+          "type": "boolean",
+          "description": "isBundle determines whether a productOffering represents a single productOffering (false), or a bundle of productOfferings (true)."
+        },
+        "lastUpdate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date and time of the last update"
+        },
+        "lifecycleStatus": {
+          "type": "string",
+          "description": "Used to indicate the current lifecycle status"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod",
+          "description": "The period for which the productOffering is valid"
+        },
+        "version": {
+          "type": "string",
+          "description": "ProductOffering version"
+        },
+        "@type": {
+          "type": "string",
+          "description": "Class type of the product offering"
+        },
+        "@baseType": {
+          "type": "string",
+          "description": "Immediate base (class) type of the product offering"
+        },
+        "@schemaLocation": {
+          "type": "string",
+          "description": "A link to the schema describing this product offering"
+        },
+        "isSellable": {
+          "type": "string",
+          "description": "A flag indicating if this product offer can be sold stand-alone for sale or not. If this flag is false it indicates that the offer can only be sold within a bundle."
+        },
+        "place": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_PlaceRef"
+          }
+        },
+        "serviceLevelAgreement": {
+          "$ref": "#/definitions/TMF620_SLARef"
+        },
+        "productSpecification": {
+          "$ref": "#/definitions/TMF620_ProductSpecificationRef"
+        },
+        "channel": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_ChannelRef"
+          }
+        },
+        "serviceCandidate": {
+          "$ref": "#/definitions/TMF620_ServiceCandidateRef"
+        },
+        "attachment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_Attachment"
+          }
+        },
+        "category": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_CategoryRef"
+          }
+        },
+        "resourceCandidate": {
+          "$ref": "#/definitions/TMF620_ResourceCandidateRef"
+        },
+        "productOfferingTerm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_ProductOfferingTerm"
+          }
+        },
+        "marketSegment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_MarketSegmentRef"
+          }
+        },
+        "productOfferingPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_ProductOfferingPrice"
+          }
+        },
+        "agreement": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_AgreementRef"
+          }
+        },
+        "bundledProductOffering": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_BundledProductOffering"
+          }
+        },
+        "prodSpecCharValueUse": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_ProdSpecCharValueUse"
+          }
+        }
+      }
+    },
+    "TMF620_ProdSpecCharValueUse": {
+      "type": "object",
+      "description": "A use of the ProdSpecCharacteristicValue by a ProductOffering to which additional properties (attributes) apply or override the properties of similar properties contained in ProdSpecCharacteristicValue. It should be noted that characteristics which their value(s) addressed by this object must exist in corresponding product specification. The available characteristic values for a ProductSpecCharacteristic in a Product specification can be modified at the ProductOffering level. For example, a characteristic 'Color' might have values White, Blue, Green, and Red. But, the list of values can be restricted to e.g. White and Blue in an associated product offering. It should be noted that the list of values in 'ProdSpecCharValueUse' is a strict subset of the list of values as defined in the corresponding product specification characteristics.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the associated productSpecCharacteristic"
+        },
+        "description": {
+          "type": "string",
+          "description": "A narrative that explains in detail what the productSpecCharacteristic is"
+        },
+        "valueType": {
+          "type": "string",
+          "description": "A kind of value that the characteristic can take on, such as numeric, text and so forth"
+        },
+        "minCardinality": {
+          "type": "integer",
+          "description": "The minimum number of instances a CharacteristicValue can take on. For example, zero to five phone numbers in a group calling plan, where zero is the value for the minCardinality."
+        },
+        "maxCardinality": {
+          "type": "integer",
+          "description": "The maximum number of instances a CharacteristicValue can take on. For example, zero to five phone numbers in a group calling plan, where five is the value for the maxCardinality."
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod",
+          "description": "The period for which the productSpecCharacteristic is valid"
+        },
+        "productSpecCharacteristicValue": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_ProductSpecCharacteristicValue"
+          }
+        },
+        "productSpecification": {
+          "$ref": "#/definitions/TMF620_ProductSpecificationRef"
+        }
+      }
+    },
+    "TMF620_ProductOfferingPrice": {
+      "type": "object",
+      "description": "An amount, usually of money, that is asked for or allowed when a ProductOffering is bought, rented, or leased. The price is valid for a defined period of time and may not represent the actual price paid by a customer.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "unique id of this resource"
+        },
+        "href": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the productOfferingPrice"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the productOfferingPrice"
+        },
+        "version": {
+          "type": "string",
+          "description": "ProductOffering version"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod",
+          "description": "The period for which the productOfferingPrice is valid"
+        },
+        "priceType": {
+          "type": "string",
+          "description": "A category that describes the price, such as recurring, discount, allowance, penalty, and so forth."
+        },
+        "unitOfMeasure": {
+          "$ref": "#/definitions/Money",
+          "description": "A number and unit representing how many (for instance 1 dozen) of an ProductOffering is available at the offered price. Its meaning depends on the priceType. It could be a price, a rate, or a discount."
+        },
+        "recurringChargePeriodType": {
+          "type": "string",
+          "description": "The period to repeat the application of the price\nCould be month, week..."
+        },
+        "recurringChargePeriodLength": {
+          "type": "integer",
+          "description": "the period of the recurring charge:  1, 2, ... .It sets to zero if it is not applicable"
+        },
+        "@type": {
+          "type": "string",
+          "description": "The class type of this Product offering"
+        },
+        "@baseType": {
+          "type": "string",
+          "description": "the immediate base class type of this product offering"
+        },
+        "@schemaLocation": {
+          "type": "string",
+          "description": "hyperlink reference to the schema describing this resource"
+        },
+        "lastUpdate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "the last update time of this POP"
+        },
+        "isBundle": {
+          "type": "boolean",
+          "description": "A flag indicating if this POP is composite (bundle) or not"
+        },
+        "lifecycleStatus": {
+          "type": "string",
+          "description": "the lifecycle status of this POP"
+        },
+        "price": {
+          "$ref": "#/definitions/Money",
+          "description": "The amount of money that characterizes the price."
+        },
+        "percentage": {
+          "type": "number",
+          "format": "float",
+          "description": "Percentage to apply for ProdOfferPriceAlteration (Discount)"
+        },
+        "bundledPopRelationship": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_BundledPopRelationship"
+          }
+        },
+        "popRelationship": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_PopRelationship"
+          }
+        },
+        "prodSpecCharValueUse": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_ProdSpecCharValueUse"
+          }
+        },
+        "productOfferingTerm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_ProductOfferingTerm"
+          }
+        },
+        "place": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_PlaceRef"
+          }
+        },
+        "constraint": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_ConstraintRef"
+          }
+        },
+        "pricingLogicAlgorithm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_PricingLogicAlgorithm"
+          }
+        },
+        "tax": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF620_Tax"
+          }
+        }
+      }
+    },
+    "TMF620_PlaceRef": {
+      "type": "object",
+      "description": "Place reference. Place defines the places where the products are sold or delivered.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the place"
+        },
+        "href": {
+          "type": "string",
+          "description": "Unique reference of the place"
+        },
+        "name": {
+          "type": "string",
+          "description": "A user-friendly name for the place, such as \"Paris Store\", \"London Store\", \"Main Home\""
+        },
+        "geoLocationUrl": {
+          "type": "string",
+          "description": "A url providing a map for localizing the place"
+        },
+        "address": {
+          "type": "string",
+          "description": "A string characterizing an address (for instance a formatted address or an identifier taken from an address database or an address API)."
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "class type of the referred Place object"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role of the place (for instance: 'home delivery', 'shop retrieval')"
+        }
+      }
+    },
+    "TMF620_SLARef": {
+      "type": "object",
+      "description": "ServiceLevelAgreement reference: A service level agreement (SLA) is a type of agreement that represents a formal negotiated agreement between two parties designed to create a common understanding about products, services, priorities, responsibilities, and so forth. The SLA is a set of appropriate procedures and targets formally or informally agreed between parties in order to achieve and maintain specified Quality of Service.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of service level agreement"
+        },
+        "href": {
+          "type": "string",
+          "description": "Reference of the service level agreement"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the service level agreement"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "class type of referred Service Level Agreement"
+        }
+      }
+    },
+    "TMF620_ProductSpecCharacteristicValue": {
+      "type": "object",
+      "description": "A number or text that can be assigned to a ProductSpecCharacteristic.",
+      "properties": {
+        "isDefault": {
+          "type": "boolean",
+          "description": "Indicates if the value is the default value for a characteristic"
+        },
+        "unitOfMeasure": {
+          "type": "string",
+          "description": "Could be minutes, GB..."
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod",
+          "description": "The period of time for which a value is applicable"
+        },
+        "value": {
+          "type": "string",
+          "description": "A discrete value that the characteristic can take on. the value type is defined by 'valueType' characteristic"
+        },
+        "valueFrom": {
+          "type": "string",
+          "description": "The low range value that a characteristic can take on"
+        },
+        "valueTo": {
+          "type": "string",
+          "description": "The upper range value that a characteristic can take on"
+        },
+        "valueType": {
+          "type": "string",
+          "description": "A kind of value that the characteristic can take on, such as numeric, text, and so forth"
+        },
+        "rangeInterval": {
+          "type": "string",
+          "description": "An indicator that specifies the inclusion or exclusion of the valueFrom and valueTo attributes. If applicable, possible values are \"open\", \"closed\", \"closedBottom\" and \"closedTop\"."
+        },
+        "regex": {
+          "type": "string",
+          "description": "Regular expression to define constraint on the allowed value"
+        },
+        "@type": {
+          "type": "string",
+          "description": "The class type of the characteristic value"
+        },
+        "@schemaLocation": {
+          "type": "string",
+          "description": "Hyperlink reference to schema describing this object"
+        }
+      }
+    },
+    "TMF620_ProductSpecificationRef": {
+      "type": "object",
+      "description": "Product specification reference: A ProductSpecification is a detailed description of a tangible or intangible object made available externally in the form of a ProductOffering to customers or other parties playing a party role.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the product specification"
+        },
+        "href": {
+          "type": "string",
+          "description": "Reference of the product specification"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the product specification"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the product specification"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "class type of referred Product Specification"
+        }
+      }
+    },
+    "TMF620_ChannelRef": {
+      "type": "object",
+      "description": "Channel reference. The channel defines the channel for selling product offerings.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the channel"
+        },
+        "href": {
+          "type": "string",
+          "description": "Reference of the channel"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the channel"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "(Class) type of the referred channel like DistributionChannel, SalesChannel and so on"
+        }
+      }
+    },
+    "TMF620_ServiceCandidateRef": {
+      "type": "object",
+      "description": "ServiceCandidate reference. ServiceCandidate is an entity that makes a ServiceSpecification available to a catalog.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the service candidate"
+        },
+        "href": {
+          "type": "string",
+          "description": "Unique reference of the service candidate"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the service candidate"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the service candidate"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "The Class type of  referred Service Candidate"
+        }
+      }
+    },
+    "TMF620_Attachment": {
+      "type": "object",
+      "description": "Complements the description of an element (for instance a product) through video, pictures...",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "A narrative text describing the content of the attachment"
+        },
+        "href": {
+          "type": "string",
+          "description": "Reference of the attachment"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the attachment"
+        },
+        "type": {
+          "type": "string",
+          "description": "Attachment type such as video, picture"
+        },
+        "url": {
+          "type": "string",
+          "description": "Uniform Resource Locator, is a web page address (a subset of URI)"
+        },
+        "mimeType": {
+          "type": "string",
+          "description": "Attachment mime type such as extension file for video, picture and document"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod"
+        },
+        "@type": {
+          "type": "string",
+          "description": "the class type of the Attachment"
+        },
+        "@baseType": {
+          "type": "string",
+          "description": "The immediate base class type of the attachment"
+        },
+        "@schemaLocation": {
+          "type": "string",
+          "description": "A link to the schema describing this attachment entity"
+        }
+      }
+    },
+    "TMF620_CategoryRef": {
+      "type": "object",
+      "description": "Category reference. The category resource is used to group product offerings, service and resource candidates in logical containers. Categories can contain other categories and/or product offerings, resource or service candidates.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique reference of the category"
+        },
+        "href": {
+          "type": "string",
+          "description": "Unique reference of the category"
+        },
+        "version": {
+          "type": "string",
+          "description": "Category version"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the category"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "the class type of the referred Category"
+        }
+      }
+    },
+    "TMF620_ResourceCandidateRef": {
+      "type": "object",
+      "description": "ResourceCandidate reference: A resource candidate is an entity that makes a ResourceSpecification available to a catalog.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the resource candidate"
+        },
+        "href": {
+          "type": "string",
+          "description": "Reference of the resource candidate"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the resource candidate"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the resource candidate"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "The Class type of referred Resource Candidate"
+        }
+      }
+    },
+    "TMF620_ProductOfferingTerm": {
+      "type": "object",
+      "description": "A condition under which a ProductOffering is made available to Customers. For instance, a productOffering can be offered with multiple commitment periods.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the productOfferingTerm"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the productOfferingTerm"
+        },
+        "duration": {
+          "$ref": "#/definitions/Quantity",
+          "description": "Duration of the productOfferingTerm"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod",
+          "description": "The period for which the productOfferingterm is valid"
+        },
+        "@type": {
+          "type": "string",
+          "description": "The class type of ProductOfferingTerm"
+        },
+        "@schemaLocation": {
+          "type": "string",
+          "description": "A link to the schema describing this product offering term"
+        }
+      }
+    },
+    "TMF620_MarketSegmentRef": {
+      "type": "object",
+      "description": "provides references to the corresponding market segment as target of product offerings. A market segment is grouping of Parties, GeographicAreas, SalesChannels, and so forth.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the market segment"
+        },
+        "href": {
+          "type": "string",
+          "description": "Reference of the market segment"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the market segment"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "(Class) type of the referred market segment"
+        }
+      }
+    },
+    "TMF620_AgreementRef": {
+      "type": "object",
+      "description": "Agreement reference. An agreement represents a contract or arrangement, either written or verbal and sometimes enforceable by law, such as a service level agreement or a customer price agreement. An agreement involves a number of other business entities, such as products, services, and resources and/or their specifications.",
+      "properties": {
+        "href": {
+          "type": "string",
+          "description": "Reference of the agreement"
+        },
+        "id": {
+          "type": "string",
+          "description": "Identifier of the agreement"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the agreement"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "class type of the referred Agreement"
+        }
+      }
+    },
+    "TMF620_BundledProductOffering": {
+      "type": "object",
+      "description": "A type of ProductOffering that belongs to a grouping of ProductOfferings made available to the market. It inherits of all attributes of ProductOffering.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the BundledProductOffering"
+        },
+        "href": {
+          "type": "string",
+          "description": "Unique reference of the BundledProductOffering"
+        },
+        "lifecycleStatus": {
+          "type": "string",
+          "description": "Used to indicate the current lifecycle status"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the BundledProductOffering"
+        },
+        "bundledProductOffering": {
+          "$ref": "#/definitions/TMF620_BundledProdOfferOption"
+        }
+      }
+    },
+    "TMF620_BundledProdOfferOption": {
+      "type": "object",
+      "description": "A set of numbers that specifies the lower and upper limits for a ProductOffering that can be procured as part of the related BundledProductOffering. Values can range from 0 to unbounded",
+      "properties": {
+        "numberRelOfferLowerLimit": {
+          "type": "integer",
+          "description": "lower limit for a product offering that can be procured as part of the related BundledProductOffering"
+        },
+        "numberRelOfferUpperLimit": {
+          "type": "integer",
+          "description": "upper limit for a product offering that can be procured as part of the related BundledProductOffering"
+        },
+        "numberRelOfferDefault": {
+          "type": "integer",
+          "description": "Default number of produc offereings that should be procured as part of the related BundledProductOffering"
+        }
+      }
+    },
+    "TMF620_BundledPopRelationship": {
+      "type": "object",
+      "description": "this object represents a bundle relationship from a bundle product offering (parent) to a simple product offering (child). A simple product offering may participate in more than one bundle relationships.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the associated product offering"
+        },
+        "href": {
+          "type": "string",
+          "description": "hyperlink reference of the associated product offering"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of  the associated product offering"
+        },
+        "@type": {
+          "type": "string",
+          "description": "(Class) type of the associated product offering"
+        }
+      }
+    },
+    "TMF620_PopRelationship": {
+      "type": "object",
+      "description": "product offering relationship",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the associated product offering"
+        },
+        "href": {
+          "type": "string",
+          "description": "hyperlink reference of the associated product offering"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of  the associated product offering"
+        },
+        "@type": {
+          "type": "string",
+          "description": "(Class) type of the associated product offering"
+        }
+      }
+    },
+    "TMF620_ConstraintRef": {
+      "type": "object",
+      "description": "Constraint reference. The Constraint resource represents a policy/rule applied to an entity or entity spec.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "reference id to the target constraint"
+        },
+        "href": {
+          "type": "string",
+          "description": "Hyperlink reference to the target constraint"
+        },
+        "version": {
+          "type": "string",
+          "description": "constraint version"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name given to the constraint"
+        },
+        "@referredType": {
+          "type": "string",
+          "description": "The (class) type of the referred constraint"
+        }
+      }
+    },
+    "TMF620_PricingLogicAlgorithm": {
+      "type": "object",
+      "description": "The PricingLogicAlgorithm entity represents an instantiation of an interface specification to external rating function (without a modeled bahavior in SID). Some of the parameters of the interface definiition may be already set (such as price per unit) and some may be gathered during the rating process from the event (such as call duration) or from ProductCharacteristicValues (such as assigned bandwidth)",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "unique id of the PLA"
+        },
+        "href": {
+          "type": "string",
+          "description": "hyperlink reference of this PLA"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name given to the PLA"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the PLA"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod",
+          "description": "The period for which the PLA is valid"
+        },
+        "plaSpecId": {
+          "type": "string",
+          "description": "id of corresponding PLA specification"
+        },
+        "@type": {
+          "type": "string",
+          "description": "The class type of this PLA"
+        }
+      }
+    },
+    "TMF620_Tax": {
+      "type": "object",
+      "description": "An amount of money levied on the price of a Product by a legislative body.",
+      "properties": {
+        "taxAmount": {
+          "$ref": "#/definitions/Money",
+          "description": "tax amount"
+        },
+        "taxCategory": {
+          "$ref": "#/definitions/Money",
+          "description": "A categorization of the tax rate."
+        },
+        "taxRate": {
+          "type": "number",
+          "format": "float",
+          "description": "Tax rate"
+        }
+      }
+    },
+    "POST_REQ_ProductOrder": {
+      "description": "",
+      "required": [
+        "orderItem"
+      ],
+      "type": "object",
+      "properties": {
+        "externalId": {
+          "description": "ID given by the consumer and only understandable by him (to facilitate his searches afterwards).",
+          "type": "string"
+        },
+        "priority": {
+          "$ref": "#/definitions/TMF622_PriorityType"
+        },
+        "description": {
+          "description": "Description of the product order",
+          "type": "string"
+        },
+        "category": {
+          "description": "Used to categorize the order from a business perspective that can be useful for the OM system (e.g. 'enterprise', 'residential', ...).",
+          "type": "string"
+        },
+        "requestedStartDate": {
+          "description": "Order start date wished by the requestor",
+          "type": "string",
+          "format": "date-time"
+        },
+        "requestedCompletionDate": {
+          "description": "Requested delivery date from the requestor perspective",
+          "type": "string",
+          "format": "date-time"
+        },
+        "notificationContact": {
+          "description": "Contact attached to the order to send back information regarding this order",
+          "type": "string"
+        },
+        "@baseType": {
+          "description": "Indicates the base type of the resource. Here can be 'ProductOrder'.",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the type of resource. Here can be 'ProductOrder'.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "A link to the schema describing this REST resource.",
+          "type": "string"
+        },
+        "channel": {
+          "$ref": "#/definitions/TMF622_Channel"
+        },
+        "note": {
+          "$ref": "#/definitions/TMF622_Note"
+        },
+        "relatedParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_RelatedPartyRef"
+          }
+        },
+        "payment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_PaymentRef"
+          }
+        },
+        "billingAccount": {
+          "$ref": "#/definitions/TMF622_BillingAccountRef"
+        },
+        "orderTotalPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_OrderPrice"
+          }
+        },
+        "orderItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_POST_REQ_OrderItem"
+          }
+        }
+      }
+    },
+    "TMF622_POST_REQ_OrderItem": {
+      "description": "",
+      "required": [
+        "id",
+        "action"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier of the line item (generally it is a sequence number 01, 02, 03, ...)",
+          "type": "string"
+        },
+        "action": {
+          "$ref": "#/definitions/TMF622_ActionType"
+        },
+        "quantity": {
+          "description": "Quantity ordered",
+          "type": "integer",
+          "format": "int64"
+        },
+        "@type": {
+          "description": "Indicates the type of resource. Here it can be a type of productOrderItem.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "An URL to the schema describing this REST resource.",
+          "type": "string"
+        },
+        "appointment": {
+          "$ref": "#/definitions/TMF622_AppointmentRef"
+        },
+        "billingAccount": {
+          "$ref": "#/definitions/TMF622_BillingAccountRef"
+        },
+        "itemPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_OrderPrice"
+          }
+        },
+        "itemTotalPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_OrderPrice"
+          }
+        },
+        "productOffering": {
+          "$ref": "#/definitions/TMF622_ProductOfferingRef"
+        },
+        "product": {
+          "$ref": "#/definitions/TMF622_Product"
+        },
+        "orderItemRelationship": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_OrderItemRelationShip"
+          }
+        },
+        "qualification": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_QualificationRef"
+          }
+        },
+        "payment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_PaymentRef"
+          }
+        },
+        "itemTerm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_OrderTerm"
+          }
+        },
+        "orderItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_OrderItem"
+          }
+        }
+      }
+    },
+    "TMF622_PriorityType": {
+      "description": "",
+      "type": "string",
+      "enum": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "TMF622_ActionType": {
+      "description": "",
+      "type": "string",
+      "enum": [
+        "add",
+        "modify",
+        "noChange",
+        "delete"
+      ]
+    },
+    "TMF622_StateType": {
+      "description": "",
+      "type": "string",
+      "enum": [
+        "acknowledged",
+        "inProgress",
+        "cancelled",
+        "completed",
+        "rejected",
+        "pending",
+        "held",
+        "failed",
+        "partial"
+      ]
+    },
+    "TMF622_RelationShipType": {
+      "description": "",
+      "type": "string",
+      "enum": [
+        "reliesOn",
+        "brings",
+        "hasParent",
+        "hasChild"
+      ]
+    },
+    "TMF622_PriceType": {
+      "description": "",
+      "type": "string",
+      "enum": [
+        "recuring",
+        "oneTime",
+        "usage"
+      ]
+    },
+    "TMF622_BillingAccountRef": {
+      "description": "A BillingAccount is a detailed description of a bill structure.",
+      "required": [
+        "id",
+        "href"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the billing account",
+          "type": "string"
+        },
+        "href": {
+          "description": "Unique reference of the billing account",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the billing account",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the (class) type of resource.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_Place": {
+      "description": "Place defines the places where the products are sold or delivered.",
+      "required": [
+        "role"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the place",
+          "type": "string"
+        },
+        "href": {
+          "description": "Unique reference of the place",
+          "type": "string"
+        },
+        "name": {
+          "description": "A user-friendly name for the place, such as 'Paris Store', 'Main Home'.",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role of the place",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Type of Place.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to the schema describing this REST resource.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_AppointmentRef": {
+      "description": "If the product order item requires an appointment between the service provider and the customer.",
+      "required": [
+        "href",
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "href": {
+          "description": "Hyperlink to access the appointment",
+          "type": "string"
+        },
+        "id": {
+          "description": "id of the appointment",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the (class) type of resource.",
+          "type": "string"
+        }
+      }
+    },
+    "ProductOrder": {
+      "description": "",
+      "required": [
+        "id",
+        "orderItem"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "ID created on repository side (OM system)",
+          "type": "string"
+        },
+        "href": {
+          "description": "Hyperlink to access the order",
+          "type": "string"
+        },
+        "externalId": {
+          "description": "ID given by the consumer and only understandable by him (to facilitate his searches afterwards).",
+          "type": "string"
+        },
+        "priority": {
+          "$ref": "#/definitions/TMF622_PriorityType"
+        },
+        "description": {
+          "description": "Description of the product order",
+          "type": "string"
+        },
+        "category": {
+          "description": "Used to categorize the order from a business perspective that can be useful for the OM system (e.g. 'enterprise', 'residential', ...).",
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/TMF622_StateType"
+        },
+        "orderDate": {
+          "description": "Date when the order was created",
+          "type": "string",
+          "format": "date-time"
+        },
+        "completionDate": {
+          "description": "Date when the order was completed.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "requestedStartDate": {
+          "description": "Order start date wished by the requestor",
+          "type": "string",
+          "format": "date-time"
+        },
+        "requestedCompletionDate": {
+          "description": "Requested delivery date from the requestor perspective",
+          "type": "string",
+          "format": "date-time"
+        },
+        "expectedCompletionDate": {
+          "description": "Expected delivery date amended by the provider",
+          "type": "string",
+          "format": "date-time"
+        },
+        "notificationContact": {
+          "description": "Contact attached to the order to send back information regarding this order",
+          "type": "string"
+        },
+        "@baseType": {
+          "description": "Indicates the base type of the resource. Here can be 'ProductOrder'.",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the type of resource. Here can be 'ProductOrder'.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "A link to the schema describing this REST resource.",
+          "type": "string"
+        },
+        "channel": {
+          "$ref": "#/definitions/TMF622_Channel"
+        },
+        "note": {
+          "$ref": "#/definitions/TMF622_Note"
+        },
+        "relatedParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RelatedPartyRef"
+          }
+        },
+        "payment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_PaymentRef"
+          }
+        },
+        "billingAccount": {
+          "$ref": "#/definitions/TMF622_BillingAccountRef"
+        },
+        "orderTotalPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_OrderPrice"
+          }
+        },
+        "orderItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_OrderItem"
+          }
+        }
+      }
+    },
+    "TMF622_Note": {
+      "description": "Extra information about a given entity",
+      "required": [
+        "text"
+      ],
+      "type": "object",
+      "properties": {
+        "text": {
+          "description": "Texte of the note",
+          "type": "string"
+        },
+        "date": {
+          "description": "Date of the note",
+          "type": "string",
+          "format": "date-time"
+        },
+        "author": {
+          "description": "Author of the note",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_RelatedPartyRef": {
+      "description": "A related party defines party or party role linked to a specific entity.",
+      "required": [
+        "id",
+        "href",
+        "role"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the related party",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the related party, could be a party reference or a party role reference.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the related party",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role played by the related party",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the base (class) type of the party.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_OrderItem": {
+      "description": "An identified part of the order. A product order is decomposed into one or more order items.",
+      "required": [
+        "id",
+        "action"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier of the line item (generally it is a sequence number 01, 02, 03, ...)",
+          "type": "string"
+        },
+        "action": {
+          "$ref": "#/definitions/TMF622_ActionType"
+        },
+        "state": {
+          "$ref": "#/definitions/TMF622_StateType"
+        },
+        "quantity": {
+          "description": "Quantity ordered",
+          "type": "integer",
+          "format": "int64"
+        },
+        "@type": {
+          "description": "Indicates the type of resource. Here it can be a type of productOrderItem.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "An URL to the schema describing this REST resource.",
+          "type": "string"
+        },
+        "appointment": {
+          "$ref": "#/definitions/TMF622_AppointmentRef"
+        },
+        "billingAccount": {
+          "$ref": "#/definitions/TMF622_BillingAccountRef"
+        },
+        "itemPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_OrderPrice"
+          }
+        },
+        "itemTotalPrice": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_OrderPrice"
+          }
+        },
+        "productOffering": {
+          "$ref": "#/definitions/TMF622_ProductOfferingRef"
+        },
+        "product": {
+          "$ref": "#/definitions/TMF622_Product"
+        },
+        "orderItemRelationship": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_OrderItemRelationShip"
+          }
+        },
+        "qualification": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_QualificationRef"
+          }
+        },
+        "payment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_PaymentRef"
+          }
+        },
+        "itemTerm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_OrderTerm"
+          }
+        },
+        "orderItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_OrderItem"
+          }
+        }
+      }
+    },
+    "TMF622_OrderPrice": {
+      "description": "An amount, usually of money, that represents the actual price paid by the Customer for this item or this order.",
+      "required": [
+        "priceType",
+        "price"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "A short descriptive name such as \"Subscription price\".",
+          "type": "string"
+        },
+        "description": {
+          "description": "A narrative that explains in detail the semantics of this order item price",
+          "type": "string"
+        },
+        "priceType": {
+          "$ref": "#/definitions/TMF622_PriceType"
+        },
+        "unitOfMeasure": {
+          "description": "Could be minutes, gigaBytes,...",
+          "type": "string"
+        },
+        "recurringChargePeriod": {
+          "description": "Could be month, week,...",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicate the type of orderPrice.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "A link to the schema describing this orderPrice extension.",
+          "type": "string"
+        },
+        "price": {
+          "$ref": "#/definitions/TMF622_Price"
+        },
+        "priceAlteration": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_PriceAlteration"
+          }
+        },
+        "billingAccount": {
+          "$ref": "#/definitions/TMF622_BillingAccountRef"
+        }
+      }
+    },
+    "TMF622_ProductOfferingRef": {
+      "description": "A product offering represents entities that are order-able from the provider of the catalog, this resource includes pricing information.",
+      "required": [
+        "id",
+        "href"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the product offering.",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the product offering.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the product offering.",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicate the class (type) of product offering.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_Product": {
+      "description": "Configure the product characteristics (only configurable characteristics and necessary only if a non default value is selected) and/or identify the product that needs to be modified/deleted.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "",
+          "type": "string"
+        },
+        "href": {
+          "description": "",
+          "type": "string"
+        },
+        "name": {
+          "description": "",
+          "type": "string"
+        },
+        "place": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_Place"
+          }
+        },
+        "characteristic": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_ProductCharacteristic"
+          }
+        },
+        "relatedParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_RelatedPartyRef"
+          }
+        },
+        "productRelationship": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF622_ProductRelationship"
+          }
+        },
+        "productSpecification": {
+          "$ref": "#/definitions/TMF622_ProductSpecificationRef"
+        },
+        "@type": {
+          "description": "",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_OrderItemRelationShip": {
+      "description": "Linked order items to the one instantiate.",
+      "required": [
+        "type",
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/TMF622_RelationShipType"
+        },
+        "id": {
+          "description": "The identifier of the related ordered item.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_ProductCharacteristic": {
+      "description": "Characteristics of the product to instantiate or to modify.",
+      "required": [
+        "name",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the characteristic.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value of the characteristic.",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of resource",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "This field provided a link to the schema describing this REST resource.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_ProductRelationship": {
+      "description": "",
+      "required": [
+        "type",
+        "product"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/TMF622_RelationShipType"
+        },
+        "product": {
+          "$ref": "#/definitions/TMF622_Product"
+        }
+      }
+    },
+    "TMF622_Channel": {
+      "description": "The channel defines the channel for selling product offerings where order has been submitted.",
+      "required": [
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of  the channel",
+          "type": "string"
+        },
+        "href": {
+          "description": "Unique reference of the channel",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the channel",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role of the channel - could be 'initChannel', 'submitChannel' for example.",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of resource.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_PriceAlteration": {
+      "description": "Is an amount, usually of money, that modifies the price charged for an order item.",
+      "required": [
+        "priceType"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "",
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "type": "string"
+        },
+        "priceType": {
+          "$ref": "#/definitions/TMF622_PriceType"
+        },
+        "unitOfMeasure": {
+          "description": "",
+          "type": "string"
+        },
+        "recurringChargePeriod": {
+          "description": "",
+          "type": "string"
+        },
+        "applicationDuration": {
+          "description": "",
+          "type": "string"
+        },
+        "priority": {
+          "description": "",
+          "type": "integer",
+          "format": "int32"
+        },
+        "price": {
+          "$ref": "#/definitions/TMF622_Price"
+        },
+        "@type": {
+          "description": "",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_Price": {
+      "description": "Provides all amounts (tax included, duty free, tax rate), used currency and percentage to apply for Price Alteration.",
+      "type": "object",
+      "properties": {
+        "taxIncludedAmount": {
+          "$ref": "#/definitions/Money"
+        },
+        "dutyFreeAmount": {
+          "$ref": "#/definitions/Money"
+        },
+        "taxRate": {
+          "description": "Tax rate.",
+          "type": "number",
+          "format": "float"
+        },
+        "percentage": {
+          "description": "Percentage to apply for ProdOfferPriceAlteration.",
+          "type": "number",
+          "format": "float"
+        },
+        "@type": {
+          "description": "Indicates the (class) type of the price.",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to the schema describing this REST resource.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_QualificationRef": {
+      "description": "It could be a serviceQualification or a productOfferingQualification that has been executed previously and captured in the productOrder to provide 'eligibility' information.",
+      "required": [
+        "id",
+        "href"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier of a pre-existing qualification.",
+          "type": "string"
+        },
+        "href": {
+          "description": "href of the qualification.",
+          "type": "string"
+        },
+        "qualificationItemId": {
+          "description": "Id of an item of a qualification.",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the type of resource. Here it can be a type of qualification. (could a service qualification or a product offering qualification).",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_PaymentRef": {
+      "description": "If an immediate payment has been done at the product order submission, the payment information are captured and stored (as a reference) in the order.",
+      "required": [
+        "id",
+        "href"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Identifier of a payment.",
+          "type": "string"
+        },
+        "href": {
+          "description": "Hyperlink to access to a payment.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of a payment.",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the type of resource. Here can be 'cash', 'BankCard', \ufffdCheck\ufffd, etc...",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_OrderTerm": {
+      "description": "Description of a productTerm linked to this orderItem. This represent a commitment with a duration.\nDuration or name must be provided.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the productOrderTerm.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the productOrderTerm.",
+          "type": "string"
+        },
+        "duration": {
+          "$ref": "#/definitions/Quantity"
+        },
+        "@type": {
+          "description": "Indicated the type of Term.",
+          "type": "string"
+        }
+      }
+    },
+    "TMF622_ProductSpecificationRef": {
+      "description": "A ProductSpecification is a detailed description of a tangible or intangible object made available externally in the form of a ProductOffering to customers or other parties playing a party role.",
+      "required": [
+        "id",
+        "href"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the product specification.",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the product specification.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the product specification.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the product specification.",
+          "type": "string"
+        },
+        "targetResourceSchema": {
+          "$ref": "#/definitions/TMF622_TargetResourceSchema"
+        }
+      }
+    },
+    "TMF622_TargetResourceSchema": {
+      "description": "Target to the schema describing the product spec resource (and type)",
+      "required": [
+        "@type",
+        "@schemaLocation"
+      ],
+      "type": "object",
+      "properties": {
+        "@type": {
+          "description": "Indicates the (class) type of resource",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "This field provided a link to the schema describing this REST resource",
+          "type": "string"
+        }
+      }
+    },
+    "TMF621_Note": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "author": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "TMF621_RelatedObject": {
+      "type": "object",
+      "properties": {
+        "involvement": {
+          "type": "string"
+        },
+        "reference": {
+          "type": "string"
+        }
+      }
+    },
+    "TMF621_RelatedParty": {
+      "type": "object",
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "TroubleTicket": {
+      "required": [
+        "status",
+        "statusChangeReason"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "correlationId": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "creationDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "targetResolutionDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Submitted",
+            "Rejected",
+            "Acknowledged",
+            "InProgress",
+            "InProgressHeld",
+            "InProgressPending",
+            "Resolved",
+            "Closed",
+            "Cancelled"
+          ]
+        },
+        "statusChangeReason": {
+          "type": "string"
+        },
+        "statusChangeDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "relatedParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF621_RelatedParty"
+          }
+        },
+        "relatedObject": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF621_RelatedObject"
+          }
+        },
+        "note": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TMF621_Note"
+          }
+        }
+      }
+    },
+    "RelatedPartyRef": {
+      "description": "Related party reference",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the related party",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the related party, could be a party reference or a party role reference",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the related party",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role played by the related party",
+          "type": "string"
+        },
+        "@referredType": {
+          "description": "Indicates the type of related party",
+          "type": "string"
+        }
+      }
+    },
+    "RelatedParty": {
+      "description": "The party which the product is related with.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the related party",
+          "type": "string"
+        },
+        "href": {
+          "description": "Reference of the related party",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the related party",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role played by the related party",
+          "type": "string"
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod"
+        },
+        "@referredType": {
+          "description": "Indicates the (class) type of party",
+          "type": "string"
+        }
+      }
+    },
+    "TimePeriod": {
+      "description": "A business entity used to represent a period between a start and an end date and time",
+      "type": "object",
+      "properties": {
+        "startDateTime": {
+          "description": "Start date and time of the period",
+          "type": "string",
+          "format": "date-time"
+        },
+        "endDateTime": {
+          "description": "End date and time of the period",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Money": {
+      "description": "A base / value business entity used to represent money",
+      "type": "object",
+      "properties": {
+        "unit": {
+          "description": "Currency code (ISO4217 norm uses 3 letters to define the currency).",
+          "type": "string"
+        },
+        "value": {
+          "description": "A positive floating point number",
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "Quantity": {
+      "description": "Description of a quantity like for the Duration attribute",
+      "required": [
+        "amount",
+        "units"
+      ],
+      "type": "object",
+      "properties": {
+        "amount": {
+          "description": "A value for the quantity",
+          "type": "number",
+          "format": "float"
+        },
+        "units": {
+          "description": "A unit associated with the quantity (for example months)",
+          "type": "string"
+        }
+      }
+    },
+    "ValidFor": {
+      "type": "object",
+      "properties": {
+        "startDateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endDateTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Error": {
+      "required": [
+        "code",
+        "reason"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "Application related code."
+        },
+        "reason": {
+          "type": "integer",
+          "description": "Text that explains the reason for error."
+        },
+        "message": {
+          "type": "string",
+          "description": "(optional) Text that provide more details and corrective actions related to the error."
+        },
+        "status": {
+          "type": "integer",
+          "description": "(optional) http error code extension like 400-2"
+        },
+        "referenceError": {
+          "type": "string",
+          "description": "(optional) A URL to online documentation that provides more information about the error."
+        },
+        "@type": {
+          "type": "string",
+          "description": "(optional) The class type of a REST resource."
+        },
+        "@schemaLocation": {
+          "type": "string",
+          "description": "(optional) A link to the schema describing a REST resource."
+        }
+      }
+    },
+    "ErrorRepresentation": {
+      "description": "Standard tmf error representation",
+      "required": [
+        "code",
+        "message"
+      ],
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Application related code (as defined in the API or from a common list)",
+          "type": "integer",
+          "format": "int32"
+        },
+        "reason": {
+          "description": "Text that explains the reason for error. This can be shown to a client user.",
+          "type": "string"
+        },
+        "message": {
+          "description": "Text that provides more details and corrective actions related to the error. This can be shown to a client user.",
+          "type": "string"
+        },
+        "status": {
+          "description": "http error code extension like 400-2",
+          "type": "string"
+        },
+        "referenceError": {
+          "description": "url pointing to documentation describing the error",
+          "type": "string"
+        },
+        "@type": {
+          "description": "Indicates the type of resource",
+          "type": "string"
+        },
+        "@schemaLocation": {
+          "description": "Link to schema describing this REST resource",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "paths": {
+    "/openid/userinfo": {
+      "get": {
+        "operationId": "retrieveUserIdentity",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "token to be passed as a header linked to the user whose identity is requested",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "To apply specific filter in the response ",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "User identity information provided",
+            "schema": {
+              "$ref": "#/definitions/UserInfoType"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "405": {
+            "description": "Method not Allowed",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "summary": "Retrieve user identity information",
+        "tags": [
+          "identify user"
+        ]
+      }
+    },
+    "/billingAccount/{id}": {
+      "get": {
+        "operationId": "retrieveBillingAccount",
+        "summary": "Retrieves a 'BillingAccount' by Id",
+        "tags": [
+          "account management"
+        ],
+        "parameters": [
+          {
+            "required": true,
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "description": "Identifier of the Billing Account"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BillingAccount"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "405": {
+            "description": "Method not Allowed",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/customerBill": {
+      "get": {
+        "tags": [
+          "account management"
+        ],
+        "operationId": "customerBillFind",
+        "summary": "List customer bills",
+        "description": "This operation list customer bill entities.\nAttribute selection is enabled for all first level attributes.\nFiltering may be available depending on the compliance level supported by an implementation.\n\nSpecific business errors for current operation will be encapsulated in\n\nHTTP Response 422 Unprocessable entity\n",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "Attribute selection",
+            "type": "string"
+          },
+          {
+            "name": "billingAccount.id",
+            "required": false,
+            "in": "query",
+            "description": "Example of filter criteria that can be used to find customer bills",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "Requested index for start of resources to be provided in response requested by client",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Requested number of resources to be provided in response requested by client",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CustomerBill"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "description": "Total number of items matching criteria",
+                "type": "integer",
+                "format": "int32"
+              },
+              "X-Result-Count": {
+                "description": "Actual number of items returned in the response body",
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request\n\nList of supported error codes:\n- 20: Invalid URL parameter value\n- 21: Missing body\n- 22: Invalid body\n- 23: Missing body field\n- 24: Invalid body field\n- 25: Missing header\n- 26: Invalid header value\n- 27: Missing query-string parameter\n- 28: Invalid query-string parameter value",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity\n\nFunctional error",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          }
+        }
+      }
+    },
+    "/customerBill/{id}": {
+      "get": {
+        "tags": [
+          "account management"
+        ],
+        "operationId": "customerBillGet",
+        "summary": "Retrieve a customer bill",
+        "description": "This operation retrieves a customer bill entity.\nAttribute selection is enabled for all first level attributes.\nFiltering on sub-resources may be available depending on the compliance level supported by an implementation.\n\nSpecific business errors for current operation will be encapsulated in\n\nHTTP Response 422 Unprocessable entity\n",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "Attribute selection",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CustomerBill"
+            }
+          },
+          "400": {
+            "description": "Bad Request\n\nList of supported error codes:\n- 20: Invalid URL parameter value\n- 21: Missing body\n- 22: Invalid body\n- 23: Missing body field\n- 24: Invalid body field\n- 25: Missing header\n- 26: Invalid header value\n- 27: Missing query-string parameter\n- 28: Invalid query-string parameter value",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity\n\nFunctional error",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          }
+        }
+      }
+    },
+    "/appliedCustomerBillingRate": {
+      "get": {
+        "tags": [
+          "account management"
+        ],
+        "operationId": "appliedCustomerBillingRateFind",
+        "summary": "List applied customer billing rates",
+        "description": "This operation list applied customer billing rate entities.\nAttribute selection is enabled for all first level attributes.\nFiltering may be available depending on the compliance level supported by an implementation.\n\nSpecific business errors for current operation will be encapsulated in\n\nHTTP Response 422 Unprocessable entity\n",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "Attribute selection",
+            "type": "string"
+          },
+          {
+            "name": "bill.id",
+            "required": false,
+            "in": "query",
+            "description": "Example of a filter criteria that can be used to find applied customer billing rates",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "Requested index for start of resources to be provided in response requested by client",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Requested number of resources to be provided in response requested by client",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AppliedCustomerBillingRate"
+              }
+            },
+            "headers": {
+              "X-Total-Count": {
+                "description": "Total number of items matching criteria",
+                "type": "integer",
+                "format": "int32"
+              },
+              "X-Result-Count": {
+                "description": "Actual number of items returned in the response body",
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request\n\nList of supported error codes:\n- 20: Invalid URL parameter value\n- 21: Missing body\n- 22: Invalid body\n- 23: Missing body field\n- 24: Invalid body field\n- 25: Missing header\n- 26: Invalid header value\n- 27: Missing query-string parameter\n- 28: Invalid query-string parameter value",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity\n\nFunctional error",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          }
+        }
+      }
+    },
+    "/usageConsumptionReport": {
+      "get": {
+        "tags": [
+          "account management"
+        ],
+        "operationId": "usageConsumptionReportFind",
+        "summary": "Query the calculation of an usage consumption report in synchronous mode",
+        "description": "This operation is used to request the calculation of a new usage consumption report for a specific product identified by a msisdn number for example. \nAttribute selection is enabled for all first level attributes.\nFiltering may be available depending on the compliance level supported by an implementation.\n\nSpecific business errors for current operation will be encapsulated in\n\nHTTP Response 422 Unprocessable entity\n",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "Attribute selection",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UsageConsumptionReport"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request\n\nList of supported error codes:\n- 20: Invalid URL parameter value\n- 21: Missing body\n- 22: Invalid body\n- 23: Missing body field\n- 24: Invalid body field\n- 25: Missing header\n- 26: Invalid header value\n- 27: Missing query-string parameter\n- 28: Invalid query-string parameter value",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity\n\nFunctional error",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          }
+        }
+      }
+    },
+    "/usage": {
+      "get": {
+        "tags": [
+          "account management"
+        ],
+        "operationId": "usageGet",
+        "summary": "usageGet",
+        "description": "",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "relatedParty.role",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "relatedParty.id",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usage",
+            "schema": {
+              "$ref": "#/definitions/Usage"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "405": {
+            "description": "Method not Allowed",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/product": {
+      "get": {
+        "tags": [
+          "product subscription management - eCommerce"
+        ],
+        "operationId": "productFind",
+        "summary": "List products",
+        "description": "This operation list product entities.\nAttribute selection is enabled for all first level attributes.\nFiltering may be available depending on the compliance level supported by an implementation.\n\nSpecific business errors for current operation will be encapsulated in\n\nHTTP Response 422 Unprocessable entity\n",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "fields",
+            "required": false,
+            "in": "query",
+            "description": "Attributes selection",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request\n\nList of supported error codes:\n- 20: Invalid URL parameter value\n- 21: Missing body\n- 22: Invalid body\n- 23: Missing body field\n- 24: Invalid body field\n- 25: Missing header\n- 26: Invalid header value\n- 27: Missing query-string parameter\n- 28: Invalid query-string parameter value",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed\n\nList of supported error codes:\n- 61: Method not allowed",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "409": {
+            "description": "Conflict\n\nThe request could not be completed due to a conflict with the current state of the target resource.",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity\n\nFunctional error",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          }
+        }
+      }
+    },
+    "/productOffering": {
+      "get": {
+        "operationId": "listProductOffering",
+        "summary": "List or find 'ProductOffering' objects",
+        "tags": [
+          "product subscription management - eCommerce"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "fields",
+            "description": "Comma separated properties to display in response"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "name",
+            "description": "For filtering: Name of the productOffering"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "in": "query",
+            "name": "isBundle",
+            "description": "For filtering: isBundle determines whether a productOffering represents a single productOffering (false), or a bundle of productOfferings (true)."
+          },
+          {
+            "name": "lastUpdate",
+            "format": "date-time",
+            "required": false,
+            "in": "query",
+            "type": "string",
+            "description": "For filtering: Date and time of the last update"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "lifecycleStatus",
+            "description": "For filtering: Used to indicate the current lifecycle status"
+          },
+          {
+            "name": "validFor.startDateTime",
+            "format": "date-time",
+            "required": false,
+            "in": "query",
+            "type": "string",
+            "description": "For filtering: An instant of time, starting at the TimePeriod"
+          },
+          {
+            "name": "validFor.endDateTime",
+            "format": "date-time",
+            "required": false,
+            "in": "query",
+            "type": "string",
+            "description": "For filtering: An instant of time, ending at the TimePeriod."
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "version",
+            "description": "For filtering: ProductOffering version"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "@type",
+            "description": "For filtering: Class type of the product offering"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "@baseType",
+            "description": "For filtering: Immediate base (class) type of the product offering"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "@schemaLocation",
+            "description": "For filtering: A link to the schema describing this product offering"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "place.name",
+            "description": "For filtering: A user-friendly name for the place, such as \"Paris Store\", \"London Store\", \"Main Home\""
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "place.address",
+            "description": "For filtering: A string characterizing an address (for instance a formatted address or an identifier taken from an address database or an address API)."
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "place.@referredType",
+            "description": "For filtering: class type of the referred Place object"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "place.role",
+            "description": "For filtering: Role of the place (for instance: 'home delivery', 'shop retrieval')"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "serviceLevelAgreement.name",
+            "description": "For filtering: Name of the service level agreement"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "serviceLevelAgreement.@referredType",
+            "description": "For filtering: class type of referred Service Level Agreement"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productSpecification.version",
+            "description": "For filtering: Version of the product specification"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productSpecification.name",
+            "description": "For filtering: Name of the product specification"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productSpecification.@referredType",
+            "description": "For filtering: class type of referred Product Specification"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "channel.name",
+            "description": "For filtering: Name of the channel"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "channel.@referredType",
+            "description": "For filtering: (Class) type of the referred channel like DistributionChannel, SalesChannel and so on"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "serviceCandidate.version",
+            "description": "For filtering: Version of the service candidate"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "serviceCandidate.name",
+            "description": "For filtering: Name of the service candidate"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "serviceCandidate.@referredType",
+            "description": "For filtering: The Class type of  referred Service Candidate"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "attachment.type",
+            "description": "For filtering: Attachment type such as video, picture"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "attachment.url",
+            "description": "For filtering: Uniform Resource Locator, is a web page address (a subset of URI)"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "attachment.mimeType",
+            "description": "For filtering: Attachment mime type such as extension file for video, picture and document"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "attachment.@type",
+            "description": "For filtering: the class type of the Attachment"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "attachment.@baseType",
+            "description": "For filtering: The immediate base class type of the attachment"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "attachment.@schemaLocation",
+            "description": "For filtering: A link to the schema describing this attachment entity"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "category.version",
+            "description": "For filtering: Category version"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "category.name",
+            "description": "For filtering: Name of the category"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "category.@referredType",
+            "description": "For filtering: the class type of the referred Category"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "resourceCandidate.version",
+            "description": "For filtering: Version of the resource candidate"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "resourceCandidate.name",
+            "description": "For filtering: Name of the resource candidate"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "resourceCandidate.@referredType",
+            "description": "For filtering: The Class type of referred Resource Candidate"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productOfferingTerm.name",
+            "description": "For filtering: Name of the productOfferingTerm"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productOfferingTerm.@type",
+            "description": "For filtering: The class type of ProductOfferingTerm"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productOfferingTerm.@schemaLocation",
+            "description": "For filtering: A link to the schema describing this product offering term"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "marketSegment.name",
+            "description": "For filtering: Name of the market segment"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "marketSegment.@referredType",
+            "description": "For filtering: (Class) type of the referred market segment"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productOfferingPrice.name",
+            "description": "For filtering: Name of the productOfferingPrice"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productOfferingPrice.priceType",
+            "description": "For filtering: Indicates the price type: recurring, one time, usage"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productOfferingPrice.unitOfMeasure",
+            "description": "For filtering: Could be minutes, GB..."
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productOfferingPrice.recurringChargePeriod",
+            "description": "For filtering: Could be month, week..."
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productOfferingPrice.version",
+            "description": "For filtering: ProductOffering version"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productOfferingPrice.@type",
+            "description": "For filtering: The class type of the product offering price"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productOfferingPrice.@baseType",
+            "description": "For filtering: the immediate base class of product offering price"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "productOfferingPrice.@schemaLocation",
+            "description": "For filtering: hyperlink reference to the product offering price schema"
+          },
+          {
+            "type": "boolean",
+            "required": false,
+            "in": "query",
+            "name": "productOfferingPrice.isBundle",
+            "description": "For filtering: a flag indicating if this product offering price is bundle (composite) or not"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "agreement.name",
+            "description": "For filtering: Name of the agreement"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "agreement.@referredType",
+            "description": "For filtering: class type of the referred Agreement"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "bundledProductOffering.lifecycleStatus",
+            "description": "For filtering: Used to indicate the current lifecycle status"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "bundledProductOffering.name",
+            "description": "For filtering: Name of the BundledProductOffering"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "prodSpecCharValueUse.name",
+            "description": "For filtering: Name of the associated productSpecCharacteristic"
+          },
+          {
+            "type": "string",
+            "required": false,
+            "in": "query",
+            "name": "prodSpecCharValueUse.valueType",
+            "description": "For filtering: A kind of value that the characteristic can take on, such as numeric, text and so forth"
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "in": "query",
+            "name": "prodSpecCharValueUse.minCardinality",
+            "description": "For filtering: The minimum number of instances a CharacteristicValue can take on. For example, zero to five phone numbers in a group calling plan, where zero is the value for the minCardinality."
+          },
+          {
+            "type": "integer",
+            "required": false,
+            "in": "query",
+            "name": "prodSpecCharValueUse.maxCardinality",
+            "description": "For filtering: The maximum number of instances a CharacteristicValue can take on. For example, zero to five phone numbers in a group calling plan, where five is the value for the maxCardinality."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ProductOffering"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/productOrder": {
+      "post": {
+        "tags": [
+          "product subscription management - eCommerce"
+        ],
+        "operationId": "productOrderCreate",
+        "summary": "Create a product order",
+        "description": "This operation creates a product order entity. Mandatory and non mandatory attributes, additional rules and default values are provided in the specifications document.\n\nSpecific business errors for current operation will be encapsulated in\n\nHTTP Response 422 Unprocessable entity\n",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "productOrder",
+            "required": true,
+            "in": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/POST_REQ_ProductOrder"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ProductOrder"
+            }
+          },
+          "400": {
+            "description": "Bad Request\n\nList of supported error codes:\n- 20: Invalid URL parameter value\n- 21: Missing body\n- 22: Invalid body\n- 23: Missing body field\n- 24: Invalid body field\n- 25: Missing header\n- 26: Invalid header value\n- 27: Missing query-string parameter\n- 28: Invalid query-string parameter value",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "401": {
+            "description": "Unauthorized\n\nList of supported error codes:\n- 40: Missing credentials\n- 41: Invalid credentials\n- 42: Expired credentials",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "403": {
+            "description": "Forbidden\n\nList of supported error codes:\n- 50: Access denied\n- 51: Forbidden requester\n- 52: Forbidden user\n- 53: Too many requests",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "404": {
+            "description": "Not Found\n\nList of supported error codes:\n- 60: Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity\n\nFunctional error",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error\n\nList of supported error codes:\n- 1: Internal error",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable\n\nList of supported error codes:\n- 5: The service is temporarily unavailable\n- 6: Orange API is over capacity, retry later !",
+            "schema": {
+              "$ref": "#/definitions/ErrorRepresentation"
+            }
+          }
+        }
+      }
+    },
+    "/troubleTicket": {
+      "post": {
+        "tags": [
+          "issue management"
+        ],
+        "operationId": "troubleTicketCreate",
+        "summary": "troubleTicketCreate",
+        "description": "",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "troubleTicket",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TroubleTicket"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "TroubleTicket",
+            "schema": {
+              "$ref": "#/definitions/TroubleTicket"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "405": {
+            "description": "Method not Allowed",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "issue management"
+        ],
+        "operationId": "troubleTicketFind",
+        "summary": "troubleTicketFind",
+        "description": "",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "relatedParty.role",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "relatedParty.id",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of TroubleTicket",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TroubleTicket"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "405": {
+            "description": "Method not Allowed",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/troubleTicket/{troubleTicketId}": {
+      "get": {
+        "tags": [
+          "issue management"
+        ],
+        "operationId": "troubleTicketGet",
+        "summary": "troubleTicketGet",
+        "description": "",
+        "deprecated": false,
+        "parameters": [
+          {
+            "name": "troubleTicketId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "required": false,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TroubleTicket",
+            "schema": {
+              "$ref": "#/definitions/TroubleTicket"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "405": {
+            "description": "Method not Allowed",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  }
+}
